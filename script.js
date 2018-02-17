@@ -1,48 +1,72 @@
 // Code goes here
 
-var app = angular.module('theApp', ['pascalprecht.translate']);
 
-app.config(function($translateProvider, $translatePartialLoaderProvider) {
-	// $translateProvider.translations('en', {
-	// 	TITLE: 'Welcome!',
-	// 	MESSAGE: 'This app supports your lanaguage!',
-	// 	en: 'English',
-	// 	sv: 'Svenska'
-	// })
-	// .translations('sv', {
-	// 	TITLE: 'Välkommen!',
-	// 	MESSAGE: 'Denna app stöder ditt språk!',
-	// 	en: 'English',
-	// 	sv: 'Svenska'
-    // });
-    // $translatePartialLoaderProvider.addPart('menu');
-    // $translateProvider.useLoader('$translatePartialLoader', {
-    //     urlTemplate: '/i18n/{part}/{lang}.json'
-    //   });
-    // $translateProvider.preferredLanguage('en');
-    
-   ​​ $translateProvider.translations('en', {
-        "HEADLINE": "What an awesome module!",
-        "PARAGRAPH": "Srsly!",
-        "PASSED_AS_TEXT": "Hey there! I'm passed as text value!",
-        "PASSED_AS_ATTRIBUTE": "I'm passed as attribute value, cool ha?",
-        "PASSED_AS_INTERPOLATION": "Beginners! I'm interpolated!",
-        "VARIABLE_REPLACEMENT": "Hi {{name}}",
-        "BUTTON_LANG_DE": "German",
-        "BUTTON_LANG_EN": "English"
-      });
-      // configures staticFilesLoader
-      $translateProvider.useStaticFilesLoader({
-        prefix: 'i18n/menu/local-',
-        suffix: '.json'
-      });
-      // load 'en' table on startup
-      $translateProvider.preferredLanguage('en');
 
-});
+(function () {
+    'use strict';
+    var app = angular.module('angularKaarousel', ['ui.carousel']);
 
-app.controller('HomeCtrl', function($scopeុំ$translate) {
-    $scope.changeLanguage = function (langKey) {
-        $translate.use(langKey);
-      };
-});
+    app.controller('MainController', MainController);
+
+    /** @ngInject */
+    function MainController($log) {
+        var vm = this;
+        vm.slides = {
+            options: {
+                'slidesToShow':5,
+                'initialSlide': 1,
+                speed:1000,
+                autoPlay: true,
+                dot:true,
+            },
+            item:[]
+        };
+        for (var i = 0; i < 6; i++)
+            vm.slides.item.push({
+                url: 'http://placehold.it/700x400',
+                price: 24.99,
+                title: 'Item Two',
+                description: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Amet numquam aspernatur! Lorem ipsum dolor sit amet',
+                created: new Date(),
+                updated: new Date(),
+            });
+
+   
+        vm.days_between=function(date1, date2) {
+
+            // The number of milliseconds in one day
+            var ONE_DAY = 1000 * 60 * 60 * 24
+
+            // Convert both dates to milliseconds
+            var date1_ms = date1.getTime()
+            var date2_ms = date2.getTime()
+
+            // Calculate the difference in milliseconds
+            var difference_ms = Math.abs(date1_ms - date2_ms)
+
+            // Convert back to days and return
+            return Math.round(difference_ms / ONE_DAY)
+
+        }
+      
+    }
+app.run(['Carousel', (Carousel) => {
+    Carousel.setOptions({
+        arrows: true,
+        autoplay: false,
+        autoplaySpeed: 3000,
+        cssEase: 'ease',
+        dots: false,
+
+        easing: 'linear',
+        fade: false,
+        infinite: true,
+        initialSlide: 0,
+
+        slidesToShow: 1,
+        slidesToScroll: 1,
+        speed: 500,
+    });
+    }]);
+
+})();

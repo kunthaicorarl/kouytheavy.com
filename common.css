@@ -99,3 +99,84 @@ body {
     border-bottom: 1px solid #eee;
     font-size: 12px;
 }
+.wrap-container {
+    margin-top: 44px;
+}
+
+
+
+
+.widget .panel-body {
+    padding: 0px;
+}
+
+.widget .list-group {
+    margin-bottom: 0;
+}
+
+.widget .panel-title {
+    display: inline
+}
+
+.widget .label-info {
+    float: right;
+}
+
+.widget li.list-group-item {
+    border-radius: 0;
+    border: 0;
+    border-top: 1px solid #ddd;
+}
+
+    .widget li.list-group-item:hover {
+        background-color: rgba(86,61,124,.1);
+    }
+
+.widget .mic-info {
+    color: #666666;
+    font-size: 11px;
+}
+
+.widget .action {
+    margin-top: 5px;
+}
+
+.widget .comment-text {
+    font-size: 12px;
+}
+
+.widget .btn-block {
+    border-top-left-radius: 0px;
+    border-top-right-radius: 0px;
+}
+.widget .book-list {
+    padding-left: 10px;
+    padding-right: 11px;
+    padding-top: 7px;
+}
+
+
+/*slider simple*/
+.ui-carousel {
+
+    padding: 13px !important;
+}
+
+.new-car-h-100 {
+    border: 1px solid #ccc;
+    padding: 4px;
+    border-radius: 3px;
+}
+
+.new-weekly-post {
+    position: absolute;
+    right: 0;
+    background: red;
+    color: white;
+    padding: 2px;
+}
+
+.wrap-cotnainer-item-slider {
+    margin-right: 10px;
+    position: relative;
+}
