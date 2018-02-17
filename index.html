@@ -63,14 +63,23 @@ img.emoji {
     <link rel='stylesheet prefetch' href='https://cdnjs.cloudflare.com/ajax/libs/meyer-reset/2.0/reset.min.css'/>
     <link rel='stylesheet prefetch' href='https://fonts.googleapis.com/css?family=Roboto:100,300,400'/>
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.7/angular.min.js"></script>
-    <link rel='stylesheet prefetch' href='libs\carousel-lib\carousel-css.css'/>
-    <!--<link rel='stylesheet prefetch' href='libs\angular-kaarousel\angular-kaarousel.min.css' />-->
+
     <script src="libs\ui-carousel\ui-carousel.min.js"></script>
     <link rel='stylesheet prefetch' href='libs\ui-carousel\ui-carousel.min.css' />
     <script src="script.js"></script>
+
+    <link rel='stylesheet' href='libs\player-js\player.css' />
+    <script src="libs\player-js\player.js"></script>
     <!--New Lib-->
-
-
+    <script language='javascript' type='text/javascript'>
+            var options = {
+                'player_container': '#player',
+                'player_ratio': '16:9',
+                'player_mobile_on_width': '300',
+                'player_desktop_video_width': '70%',
+                'automatic_response': false
+            }
+    </script>
 <script type='text/javascript'>
 /* <![CDATA[ */
 var zvr_data = {"ajax_url":"http:\/\/www.kouytheavy.com\/wp-admin\/admin-ajax.php"};
@@ -688,613 +697,769 @@ var td_screen_width = window.innerWidth;
     <!--Container Search-->
 
       <!--books-->
-      <div class="wrap-container">        
-           <!--panel-->
+    <div class="wrap-container">
+        <!--panel-->
+        <!--<ui-carousel slides="vm.slides"
+                     slides-to-show="3"
+                     slides-to-scroll="1"
+                     initial-slide="1"
+                     autoplay="true"
+                     autoplay-speed="2000"
+                     dots="true">
 
-          <!--<ui-carousel slides="vm.slides"
-                       slides-to-show="3"
-                       slides-to-scroll="1"
-                       initial-slide="1"
-                       autoplay="true"
-                       autoplay-speed="2000"
-                       dots="true">
-
-              <carousel-item>
-                  <h3>{{ item + 1 }}</h3>
-              </carousel-item>
-          </ui-carousel>-->
-
+            <carousel-item>
+                <h3>{{ item + 1 }}</h3>
+            </carousel-item>
+        </ui-carousel>-->
 
 
 
-          <div class="container">
-              <div class="row">
-                  <div class="panel panel-default widget" style="border-radius:unset;">
-                      <div class="panel-heading" style="border-bottom: 4px solid #a09a18;background-color:
+
+        <div class="container">
+            <div class="row">
+                <div class="panel panel-default widget" style="border-radius:unset;">
+                    <div class="panel-heading" style="border-bottom: 4px solid #a09a18;background-color:
 
 white; ">
-                          <span class="glyphicon glyphicon-book"></span>
-                          <h3 class="panel-title">
-                              BOOK LIST
-                          </h3>
-                          <span class="pull-right">
-                              <i class="glyphicon glyphicon-refresh"></i>
-                          </span>
-                      </div>
-                      <div class="panel-body">
-                          <div class="row book-list">
+                        <span class="glyphicon glyphicon-book"></span>
+                        <h3 class="panel-title">
+                            BOOK LIST
+                        </h3>
+                        <span class="pull-right">
+                            <i class="glyphicon glyphicon-refresh"></i>
+                        </span>
+                    </div>
+                    <div class="panel-body">
+                        <div class="row book-list">
 
-                              <ui-carousel slides="vm.slides.item"
-                                           slides-to-show="vm.slides.options.slidesToShow"
-                                           slides-to-scroll="1"
-                                           initial-slide="vm.slides.options.initialSlide"
-                                           autoplay="vm.slides.options.autoplay"
-                                            on-init="vm.slides.onCarouselInit()"
-                                           autoplay-speed="vm.slides.options.speed"
-                                           dots="vm.slides.options.dot">
+                            <ui-carousel slides="vm.slides.item"
+                                         slides-to-show="vm.slides.options.slidesToShow"
+                                         slides-to-scroll="1"
+                                         initial-slide="vm.slides.options.initialSlide"
+                                         autoplay="vm.slides.options.autoplay"
+                                         on-before-change="vm.onCarouselBeforeChange()"
+                                         on-after-change="vm.onCarouselAfterChange()"
+                                         autoplay-speed="vm.slides.options.speed"
+                                         dots="vm.slides.options.dot">
 
-                                  <carousel-item>
-                                      <div  class="wrap-cotnainer-item-slider">
-                                          <!--<div class="new-weekly-post" ng-if="vm.days_between(item.created,item.updated)<=7">
-                                            New
-                                          </div>-->
-                                          <div class="card h-100 new-car-h-100">
-                                              <a href="#">
-                                                  <img class="card-img-top" src="{{item.url}}"
-                                                       alt="">
-                                              </a>
-                                              <div class="card-body">
-                                                  <h4 class="card-title">
-                                                      <a href="#">{{item.title}}</a>
-                                                  </h4>
-                                                  <h5>{{item.price}}</h5>
-                                                  <p class="card-text">
-                                                      {{item.description}}
-                                                  </p>
-                                              </div>
-                                              <!--<div class="card-footer">
-                                                    <small class="text-muted">★ ★ ★ ★ ☆</small>
-                                                </div>-->
-                                          </div>
-                                      </div>
-                                  </carousel-item>
-                              </ui-carousel>
-
-                            
-
-                          
-                          </div>
-                      </div>
-                  </div>
-              </div>
-          </div>
-
-
-
-
-
-          <!--panel-->
-      </div>
-      <!--books-->
-            <div class="td-main-content-wrap td-main-page-wrap td-container-wrap" style="display:none;">
-                <div class="tdc-content-wrap">
-                    <div id="td_uid_1_5a841e3d5316b" class="tdc-row stretch_row_content td-stretch-content"><div class="vc_row td_uid_2_5a841e3d531b6_rand  wpb_row td-pb-row" ><div class="vc_column td_uid_3_5a841e3d5336f_rand  wpb_column vc_column_container td-pb-span12"><div class="wpb_wrapper"><div class="td_block_wrap td_block_big_grid_2 td_uid_4_5a841e3d53594_rand td-grid-style-1 td-hover-1 td-big-grids td-pb-border-top td_block_template_2"  data-td-block-uid="td_uid_4_5a841e3d53594" ><div id=td_uid_4_5a841e3d53594 class="td_block_inner"><div class="td-big-grid-wrapper td-posts-3">
-        <div class="td_module_mx5 td-animation-stack td-big-grid-post-0 td-big-grid-post td-mx-15">
-            <div class="td-module-image">
-                <div class="td-module-thumb"><a href="http://www.kouytheavy.com/?p=799" rel="bookmark" title="Protected: 7+ advice for a successful career (and life) from Jack Ma"><img width="485" height="360" class="entry-thumb" src="http://www.kouytheavy.com/wp-content/plugins/td-grids-red-pack/images/no-thumb/td_485x360.png" alt=""/></a></div>                <div class="td-post-category-wrap"></div>
-            </div>
-
-            <div class="td-meta-info-container">
-                <div class="td-meta-align">
-                    <div class="td-big-grid-meta">
-                        <h3 class="entry-title td-module-title"><a href="http://www.kouytheavy.com/?p=799" rel="bookmark" title="Protected: 7+ advice for a successful career (and life) from Jack Ma">Protected: 7+ advice for a successful career (and life) from Jack Ma</a></h3>                    </div>
-
-                    <div class="td-module-meta-info">
+                                <carousel-item>
+                                    <div class="wrap-cotnainer-item-slider">
+                                        <!--<div class="new-weekly-post" ng-if="vm.days_between(item.created,item.updated)<=7">
+                                          New
+                                        </div>-->
+                                        <div class="card h-100 new-car-h-100">
+                                            <a href="#">
+                                                <img class="card-img-top" src="{{item.url}}"
+                                                     alt="">
+                                            </a>
+                                            <div class="card-body">
+                                                <h4 class="card-title">
+                                                    <a href="#">{{item.title}}</a>
+                                                </h4>
+                                                <h5>{{item.price}}</h5>
+                                                <p class="card-text">
+                                                    {{item.description}}
+                                                </p>
                                             </div>
-                </div>
-            </div>
-        </div>
-
-        
-        <div class="td_module_mx5 td-animation-stack td-big-grid-post-1 td-big-grid-post td-mx-15">
-            <div class="td-module-image">
-                <div class="td-module-thumb"><a href="http://www.kouytheavy.com/?p=795" rel="bookmark" title="សន្លឹកបៀរទី៩ដូណល់ត្រាំកា្របញ្ជូនផលិតផលឬទំនិញ Dr. Kouy Theavy"><img width="485" height="333" class="entry-thumb" src="http://www.kouytheavy.com/wp-content/uploads/2018/02/1234-485x333.png" srcset="http://www.kouytheavy.com/wp-content/uploads/2018/02/1234-485x333.png 485w, http://www.kouytheavy.com/wp-content/uploads/2018/02/1234-100x70.png 100w" sizes="(max-width: 485px) 100vw, 485px" alt="" title="សន្លឹកបៀរទី៩ដូណល់ត្រាំកា្របញ្ជូនផលិតផលឬទំនិញ Dr. Kouy Theavy"/></a></div>                <div class="td-post-category-wrap"></div>
-            </div>
-
-            <div class="td-meta-info-container">
-                <div class="td-meta-align">
-                    <div class="td-big-grid-meta">
-                        <h3 class="entry-title td-module-title"><a href="http://www.kouytheavy.com/?p=795" rel="bookmark" title="សន្លឹកបៀរទី៩ដូណល់ត្រាំកា្របញ្ជូនផលិតផលឬទំនិញ Dr. Kouy Theavy">សន្លឹកបៀរទី៩ដូណល់ត្រាំកា្របញ្ជូនផលិតផលឬទំនិញ Dr. Kouy Theavy</a></h3>                    </div>
-
-                    <div class="td-module-meta-info">
-                                            </div>
-                </div>
-            </div>
-        </div>
-
-        
-        <div class="td_module_mx5 td-animation-stack td-big-grid-post-2 td-big-grid-post td-mx-15">
-            <div class="td-module-image">
-                <div class="td-module-thumb"><a href="http://www.kouytheavy.com/?p=790" rel="bookmark" title="សន្លឹកបៀរទី៨ដូណល់ត្រាំ ការវាយបកវិញ Dr. Kouy Theavy"><img width="485" height="360" class="entry-thumb" src="http://www.kouytheavy.com/wp-content/uploads/2018/02/8-card-485x360.png" srcset="http://www.kouytheavy.com/wp-content/uploads/2018/02/8-card-485x360.png 485w, http://www.kouytheavy.com/wp-content/uploads/2018/02/8-card-80x60.png 80w" sizes="(max-width: 485px) 100vw, 485px" alt="" title="សន្លឹកបៀរទី៨ដូណល់ត្រាំ ការវាយបកវិញ Dr. Kouy Theavy"/></a></div>                <div class="td-post-category-wrap"></div>
-            </div>
-
-            <div class="td-meta-info-container">
-                <div class="td-meta-align">
-                    <div class="td-big-grid-meta">
-                        <h3 class="entry-title td-module-title"><a href="http://www.kouytheavy.com/?p=790" rel="bookmark" title="សន្លឹកបៀរទី៨ដូណល់ត្រាំ ការវាយបកវិញ Dr. Kouy Theavy">សន្លឹកបៀរទី៨ដូណល់ត្រាំ ការវាយបកវិញ Dr. Kouy Theavy</a></h3>                    </div>
-
-                    <div class="td-module-meta-info">
-                                            </div>
-                </div>
-            </div>
-        </div>
-
-        <div class="clearfix"></div></div></div></div> <!-- ./block --></div></div></div></div><div id="td_uid_3_5a841e3d55ce6" class="tdc-row stretch_row_content td-stretch-content"><div class="vc_row td_uid_5_5a841e3d55d2a_rand  wpb_row td-pb-row" ><div class="vc_column td_uid_6_5a841e3d55ed2_rand  wpb_column vc_column_container td-pb-span12"><div class="wpb_wrapper"><div class="td_block_wrap td_block_5 td_uid_7_5a841e3d560b4_rand td-pb-border-top td_block_template_2 td-column-3"  data-td-block-uid="td_uid_7_5a841e3d560b4" ><script>var block_td_uid_7_5a841e3d560b4 = new tdBlock();
-block_td_uid_7_5a841e3d560b4.id = "td_uid_7_5a841e3d560b4";
-block_td_uid_7_5a841e3d560b4.atts = '{"limit":"2","sort":"","post_ids":"","tag_slug":"","autors_id":"","installed_post_types":"","category_id":"","category_ids":"","custom_title":"","custom_url":"","show_child_cat":"","sub_cat_ajax":"","ajax_pagination":"","header_color":"","header_text_color":"","ajax_pagination_infinite_stop":"","td_column_number":3,"td_ajax_preloading":"","td_ajax_filter_type":"","td_ajax_filter_ids":"","td_filter_default_txt":"All","color_preset":"","border_top":"","class":"td_uid_7_5a841e3d560b4_rand","el_class":"","offset":"","css":"","tdc_css":"","tdc_css_class":"td_uid_7_5a841e3d560b4_rand","tdc_css_class_style":"td_uid_7_5a841e3d560b4_rand_style","live_filter":"","live_filter_cur_post_id":"","live_filter_cur_post_author":"","block_template_id":""}';
-block_td_uid_7_5a841e3d560b4.td_column_number = "3";
-block_td_uid_7_5a841e3d560b4.block_type = "td_block_5";
-block_td_uid_7_5a841e3d560b4.post_count = "2";
-block_td_uid_7_5a841e3d560b4.found_posts = "11";
-block_td_uid_7_5a841e3d560b4.header_color = "";
-block_td_uid_7_5a841e3d560b4.ajax_pagination_infinite_stop = "";
-block_td_uid_7_5a841e3d560b4.max_num_pages = "6";
-tdBlocksArray.push(block_td_uid_7_5a841e3d560b4);
-</script><div class="td-block-title-wrap"></div><div id=td_uid_7_5a841e3d560b4 class="td_block_inner">
-
-	<div class="td-block-row">
-
-	<div class="td-block-span6">
-
-        <div class="td_module_5 td_module_wrap td-animation-stack" >
-            <div class="td-module-image td-module-image-float">
-                <div class="td-module-thumb"><a href="http://www.kouytheavy.com/?p=799" rel="bookmark" title="Protected: 7+ advice for a successful career (and life) from Jack Ma"><img width="260" height="195" class="entry-thumb" src="http://www.kouytheavy.com/wp-content/themes/ionMag/images/no-thumb/td_260x195.png" alt=""/></a></div>            </div>
-
-            <div class="td-item-details td-category-small">
-                                
-                <h3 class="entry-title td-module-title"><a href="http://www.kouytheavy.com/?p=799" rel="bookmark" title="Protected: 7+ advice for a successful career (and life) from Jack Ma">Protected: 7+ advice for a successful career (and life) from Jack...</a></h3>
-                <div class="td-module-meta-info">
-                                                            <div class="td-module-comments"><a href="http://www.kouytheavy.com/?p=799#respond">0</a></div>                </div>
-
-                <div class="td-excerpt">
+                                            <!--<div class="card-footer">
+                                                  <small class="text-muted">★ ★ ★ ★ ☆</small>
+                                              </div>-->
+                                        </div>
                                     </div>
-            </div>
+                                </carousel-item>
+                            </ui-carousel>
 
-                        <div class="clearfix"></div>
-        </div>
 
-        
-	</div> <!-- ./td-block-span6 -->
 
-	<div class="td-block-span6">
 
-        <div class="td_module_5 td_module_wrap td-animation-stack" >
-            <div class="td-module-image td-module-image-float">
-                <div class="td-module-thumb"><a href="http://www.kouytheavy.com/?p=795" rel="bookmark" title="សន្លឹកបៀរទី៩ដូណល់ត្រាំកា្របញ្ជូនផលិតផលឬទំនិញ Dr. Kouy Theavy"><img width="260" height="195" class="entry-thumb" src="http://www.kouytheavy.com/wp-content/uploads/2018/02/1234-260x195.png" srcset="http://www.kouytheavy.com/wp-content/uploads/2018/02/1234-260x195.png 260w, http://www.kouytheavy.com/wp-content/uploads/2018/02/1234-80x60.png 80w, http://www.kouytheavy.com/wp-content/uploads/2018/02/1234-245x184.png 245w" sizes="(max-width: 260px) 100vw, 260px" alt="" title="សន្លឹកបៀរទី៩ដូណល់ត្រាំកា្របញ្ជូនផលិតផលឬទំនិញ Dr. Kouy Theavy"/></a></div>            </div>
-
-            <div class="td-item-details td-category-small">
-                                
-                <h3 class="entry-title td-module-title"><a href="http://www.kouytheavy.com/?p=795" rel="bookmark" title="សន្លឹកបៀរទី៩ដូណល់ត្រាំកា្របញ្ជូនផលិតផលឬទំនិញ Dr. Kouy Theavy">សន្លឹកបៀរទី៩ដូណល់ត្រាំកា្របញ្ជូនផលិតផលឬទំនិញ Dr. Kouy Theavy</a></h3>
-                <div class="td-module-meta-info">
-                                                            <div class="td-module-comments"><a href="http://www.kouytheavy.com/?p=795#respond">0</a></div>                </div>
-
-                <div class="td-excerpt">
-                    ﻿                </div>
-            </div>
-
-                        <div class="clearfix"></div>
-        </div>
-
-        
-	</div> <!-- ./td-block-span6 --></div><!--./row-fluid--></div></div> <!-- ./block --><div class="wpb_wrapper td_block_empty_space td_block_wrap vc_empty_space td_uid_8_5a841e3d584d0_rand "  style="height: 32px"></div></div></div></div></div><div id="td_uid_6_5a841e3d5859f" class="tdc-row stretch_row_content td-stretch-content"><div class="vc_row td_uid_9_5a841e3d585e1_rand  wpb_row td-pb-row" ><div class="vc_column td_uid_10_5a841e3d5877e_rand  wpb_column vc_column_container td-pb-span12"><div class="wpb_wrapper"><div class="td_block_wrap td_block_3 td_uid_11_5a841e3d58968_rand td-pb-border-top td_block_template_2 td-column-3"  data-td-block-uid="td_uid_11_5a841e3d58968" ><script>var block_td_uid_11_5a841e3d58968 = new tdBlock();
-block_td_uid_11_5a841e3d58968.id = "td_uid_11_5a841e3d58968";
-block_td_uid_11_5a841e3d58968.atts = '{"limit":"3","sort":"","post_ids":"","tag_slug":"","autors_id":"","installed_post_types":"","category_id":"","category_ids":"","custom_title":"","custom_url":"","show_child_cat":"","sub_cat_ajax":"","ajax_pagination":"","header_color":"","header_text_color":"","ajax_pagination_infinite_stop":"","td_column_number":3,"td_ajax_preloading":"","td_ajax_filter_type":"","td_ajax_filter_ids":"","td_filter_default_txt":"All","color_preset":"","border_top":"","class":"td_uid_11_5a841e3d58968_rand","el_class":"","offset":"","css":"","tdc_css":"","tdc_css_class":"td_uid_11_5a841e3d58968_rand","tdc_css_class_style":"td_uid_11_5a841e3d58968_rand_style","live_filter":"","live_filter_cur_post_id":"","live_filter_cur_post_author":"","block_template_id":""}';
-block_td_uid_11_5a841e3d58968.td_column_number = "3";
-block_td_uid_11_5a841e3d58968.block_type = "td_block_3";
-block_td_uid_11_5a841e3d58968.post_count = "3";
-block_td_uid_11_5a841e3d58968.found_posts = "11";
-block_td_uid_11_5a841e3d58968.header_color = "";
-block_td_uid_11_5a841e3d58968.ajax_pagination_infinite_stop = "";
-block_td_uid_11_5a841e3d58968.max_num_pages = "4";
-tdBlocksArray.push(block_td_uid_11_5a841e3d58968);
-</script><div class="td-block-title-wrap"></div><div id=td_uid_11_5a841e3d58968 class="td_block_inner">
-
-	<div class="td-block-row">
-
-	<div class="td-block-span4">
-
-        <div class="td_module_3 td_module_wrap td-animation-stack" >
-            <div class="td-module-image td-module-image-float">
-                <div class="td-module-thumb"><a href="http://www.kouytheavy.com/?p=799" rel="bookmark" title="Protected: 7+ advice for a successful career (and life) from Jack Ma"><img width="100" height="70" class="entry-thumb" src="http://www.kouytheavy.com/wp-content/plugins/td-blocks-red-pack/images/no-thumb/td_100x70.png" alt=""/></a></div>            </div>
-
-            <div class="td-item-details td-no-comment td-category-small">
-                <h3 class="entry-title td-module-title"><a href="http://www.kouytheavy.com/?p=799" rel="bookmark" title="Protected: 7+ advice for a successful career (and life) from Jack Ma">Protected: 7+ advice for a successful career (and life) from Jack...</a></h3>
-                <div class="td-module-meta-info">
-                                                        </div>
-            </div>
-
-                        <div class="clearfix"></div>
-        </div>
-
-        
-	</div> <!-- ./td-block-span4 -->
-
-	<div class="td-block-span4">
-
-        <div class="td_module_3 td_module_wrap td-animation-stack" >
-            <div class="td-module-image td-module-image-float">
-                <div class="td-module-thumb"><a href="http://www.kouytheavy.com/?p=795" rel="bookmark" title="សន្លឹកបៀរទី៩ដូណល់ត្រាំកា្របញ្ជូនផលិតផលឬទំនិញ Dr. Kouy Theavy"><img width="100" height="70" class="entry-thumb" src="http://www.kouytheavy.com/wp-content/uploads/2018/02/1234-100x70.png" srcset="http://www.kouytheavy.com/wp-content/uploads/2018/02/1234-100x70.png 100w, http://www.kouytheavy.com/wp-content/uploads/2018/02/1234-485x333.png 485w" sizes="(max-width: 100px) 100vw, 100px" alt="" title="សន្លឹកបៀរទី៩ដូណល់ត្រាំកា្របញ្ជូនផលិតផលឬទំនិញ Dr. Kouy Theavy"/></a></div>            </div>
-
-            <div class="td-item-details td-no-comment td-category-small">
-                <h3 class="entry-title td-module-title"><a href="http://www.kouytheavy.com/?p=795" rel="bookmark" title="សន្លឹកបៀរទី៩ដូណល់ត្រាំកា្របញ្ជូនផលិតផលឬទំនិញ Dr. Kouy Theavy">សន្លឹកបៀរទី៩ដូណល់ត្រាំកា្របញ្ជូនផលិតផលឬទំនិញ Dr. Kouy Theavy</a></h3>
-                <div class="td-module-meta-info">
-                                                        </div>
-            </div>
-
-                        <div class="clearfix"></div>
-        </div>
-
-        
-	</div> <!-- ./td-block-span4 -->
-
-	<div class="td-block-span4">
-
-        <div class="td_module_3 td_module_wrap td-animation-stack" >
-            <div class="td-module-image td-module-image-float">
-                <div class="td-module-thumb"><a href="http://www.kouytheavy.com/?p=790" rel="bookmark" title="សន្លឹកបៀរទី៨ដូណល់ត្រាំ ការវាយបកវិញ Dr. Kouy Theavy"><img width="100" height="70" class="entry-thumb" src="http://www.kouytheavy.com/wp-content/uploads/2018/02/8-card-100x70.png" srcset="http://www.kouytheavy.com/wp-content/uploads/2018/02/8-card-100x70.png 100w, http://www.kouytheavy.com/wp-content/uploads/2018/02/8-card-300x207.png 300w, http://www.kouytheavy.com/wp-content/uploads/2018/02/8-card.png 638w" sizes="(max-width: 100px) 100vw, 100px" alt="" title="សន្លឹកបៀរទី៨ដូណល់ត្រាំ ការវាយបកវិញ Dr. Kouy Theavy"/></a></div>            </div>
-
-            <div class="td-item-details td-no-comment td-category-small">
-                <h3 class="entry-title td-module-title"><a href="http://www.kouytheavy.com/?p=790" rel="bookmark" title="សន្លឹកបៀរទី៨ដូណល់ត្រាំ ការវាយបកវិញ Dr. Kouy Theavy">សន្លឹកបៀរទី៨ដូណល់ត្រាំ ការវាយបកវិញ Dr. Kouy Theavy</a></h3>
-                <div class="td-module-meta-info">
-                                                        </div>
-            </div>
-
-                        <div class="clearfix"></div>
-        </div>
-
-        
-	</div> <!-- ./td-block-span4 --></div><!--./row-fluid--></div></div> <!-- ./block --></div></div></div></div><div id="td_uid_8_5a841e3d5ac0b" class="tdc-row stretch_row_content td-stretch-content"><div class="vc_row td_uid_12_5a841e3d5ac4f_rand  wpb_row td-pb-row" ><div class="vc_column td_uid_13_5a841e3d5aded_rand  wpb_column vc_column_container td-pb-span12"><div class="wpb_wrapper"><div class="td_block_wrap td_block_big_grid_2 td_uid_14_5a841e3d5af47_rand td-grid-style-1 td-hover-1 td-big-grids td-pb-border-top td_block_template_2"  data-td-block-uid="td_uid_14_5a841e3d5af47" ><div id=td_uid_14_5a841e3d5af47 class="td_block_inner"><div class="td-big-grid-wrapper td-posts-3">
-        <div class="td_module_mx5 td-animation-stack td-big-grid-post-0 td-big-grid-post td-mx-15">
-            <div class="td-module-image">
-                <div class="td-module-thumb"><a href="http://www.kouytheavy.com/?p=799" rel="bookmark" title="Protected: 7+ advice for a successful career (and life) from Jack Ma"><img width="485" height="360" class="entry-thumb" src="http://www.kouytheavy.com/wp-content/plugins/td-grids-red-pack/images/no-thumb/td_485x360.png" alt=""/></a></div>                <div class="td-post-category-wrap"></div>
-            </div>
-
-            <div class="td-meta-info-container">
-                <div class="td-meta-align">
-                    <div class="td-big-grid-meta">
-                        <h3 class="entry-title td-module-title"><a href="http://www.kouytheavy.com/?p=799" rel="bookmark" title="Protected: 7+ advice for a successful career (and life) from Jack Ma">Protected: 7+ advice for a successful career (and life) from Jack Ma</a></h3>                    </div>
-
-                    <div class="td-module-meta-info">
-                                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
 
-        
-        <div class="td_module_mx5 td-animation-stack td-big-grid-post-1 td-big-grid-post td-mx-15">
-            <div class="td-module-image">
-                <div class="td-module-thumb"><a href="http://www.kouytheavy.com/?p=795" rel="bookmark" title="សន្លឹកបៀរទី៩ដូណល់ត្រាំកា្របញ្ជូនផលិតផលឬទំនិញ Dr. Kouy Theavy"><img width="485" height="333" class="entry-thumb" src="http://www.kouytheavy.com/wp-content/uploads/2018/02/1234-485x333.png" srcset="http://www.kouytheavy.com/wp-content/uploads/2018/02/1234-485x333.png 485w, http://www.kouytheavy.com/wp-content/uploads/2018/02/1234-100x70.png 100w" sizes="(max-width: 485px) 100vw, 485px" alt="" title="សន្លឹកបៀរទី៩ដូណល់ត្រាំកា្របញ្ជូនផលិតផលឬទំនិញ Dr. Kouy Theavy"/></a></div>                <div class="td-post-category-wrap"></div>
-            </div>
 
-            <div class="td-meta-info-container">
-                <div class="td-meta-align">
-                    <div class="td-big-grid-meta">
-                        <h3 class="entry-title td-module-title"><a href="http://www.kouytheavy.com/?p=795" rel="bookmark" title="សន្លឹកបៀរទី៩ដូណល់ត្រាំកា្របញ្ជូនផលិតផលឬទំនិញ Dr. Kouy Theavy">សន្លឹកបៀរទី៩ដូណល់ត្រាំកា្របញ្ជូនផលិតផលឬទំនិញ Dr. Kouy Theavy</a></h3>                    </div>
+        <!--Video List-->
+        <div class="container">
+            <div class="row">
+                <div class="panel panel-default widget" style="border-radius:unset;">
+                    <div class="panel-heading" style="border-bottom: 4px solid #a09a18;background-color:
 
-                    <div class="td-module-meta-info">
-                                            </div>
+white; ">
+                        <span class="glyphicon glyphicon-book"></span>
+                        <h3 class="panel-title">
+                           Video Lis of Robert
+                        </h3>
+                        <span class="pull-right">
+                            <i class="glyphicon glyphicon-refresh"></i>
+                        </span>
+                    </div>
+                    <div class="panel-body">
+                        <div id='Playerholder'>
+                            <div class='mms-show'>
+                                <div id='playerVdo'></div>
+                            </div>
+                            <div class='rmf-tube'>
+                                <div class='rm-rep-frame' src=''>
+                                    <div id='rm-playerVdo'></div>
+                                </div>
+                            </div>
+                            <div id='player5'></div>
+                            <div id='player4'></div>
+                            <div id='player' style='width: 100%;'></div>
+                            <!--Video List-->
+                            <script language="javascript">
+                                options.player_list = [
+                                    {
+                                        "file": "https://www.facebook.com/video/embed?video_id=410773882685189",
+                                        "title": "Part 01-02",
+                                        "description": "",
+                                        "image": "https://2.bp.blogspot.com/-wLlDz23_X48/WmstUGP0ZYI/AAAAAAAAF9I/TF-vVPEBY1IVVkrKCYP2sqCHU1njpT32QCLcBGAs/s1600/Banh%2Bchea%2BSne.png"
+                                    },
+                                    {
+                                        "file": "https://www.facebook.com/video/embed?video_id=410773916018519",
+                                        "title": "Part 03-04",
+                                        "description": "",
+                                        "image": "https://2.bp.blogspot.com/-wLlDz23_X48/WmstUGP0ZYI/AAAAAAAAF9I/TF-vVPEBY1IVVkrKCYP2sqCHU1njpT32QCLcBGAs/s1600/Banh%2Bchea%2BSne.png"
+                                    }];
+                                var player = new Video_player(options);
+                            </script>
+                            <!--Video List-->
+                        </div>
+                    </div>
+
+                    </div>
                 </div>
+
             </div>
         </div>
-
-        
-        <div class="td_module_mx5 td-animation-stack td-big-grid-post-2 td-big-grid-post td-mx-15">
-            <div class="td-module-image">
-                <div class="td-module-thumb"><a href="http://www.kouytheavy.com/?p=790" rel="bookmark" title="សន្លឹកបៀរទី៨ដូណល់ត្រាំ ការវាយបកវិញ Dr. Kouy Theavy"><img width="485" height="360" class="entry-thumb" src="http://www.kouytheavy.com/wp-content/uploads/2018/02/8-card-485x360.png" srcset="http://www.kouytheavy.com/wp-content/uploads/2018/02/8-card-485x360.png 485w, http://www.kouytheavy.com/wp-content/uploads/2018/02/8-card-80x60.png 80w" sizes="(max-width: 485px) 100vw, 485px" alt="" title="សន្លឹកបៀរទី៨ដូណល់ត្រាំ ការវាយបកវិញ Dr. Kouy Theavy"/></a></div>                <div class="td-post-category-wrap"></div>
-            </div>
-
-            <div class="td-meta-info-container">
-                <div class="td-meta-align">
-                    <div class="td-big-grid-meta">
-                        <h3 class="entry-title td-module-title"><a href="http://www.kouytheavy.com/?p=790" rel="bookmark" title="សន្លឹកបៀរទី៨ដូណល់ត្រាំ ការវាយបកវិញ Dr. Kouy Theavy">សន្លឹកបៀរទី៨ដូណល់ត្រាំ ការវាយបកវិញ Dr. Kouy Theavy</a></h3>                    </div>
-
-                    <div class="td-module-meta-info">
-                                            </div>
-                </div>
-            </div>
-        </div>
-
-        <div class="clearfix"></div></div></div></div> <!-- ./block --></div></div></div></div><div id="td_uid_10_5a841e3d5d1cb" class="tdc-row stretch_row_content td-stretch-content"><div class="vc_row td_uid_15_5a841e3d5d20f_rand  wpb_row td-pb-row" ><div class="vc_column td_uid_16_5a841e3d5d3bd_rand  wpb_column vc_column_container td-pb-span12"><div class="wpb_wrapper"><div class="td_block_wrap td_block_3 td_uid_17_5a841e3d5d536_rand td-pb-border-top td_block_template_2 td-column-3"  data-td-block-uid="td_uid_17_5a841e3d5d536" ><script>var block_td_uid_17_5a841e3d5d536 = new tdBlock();
-block_td_uid_17_5a841e3d5d536.id = "td_uid_17_5a841e3d5d536";
-block_td_uid_17_5a841e3d5d536.atts = '{"limit":"6","sort":"","post_ids":"","tag_slug":"","autors_id":"","installed_post_types":"","category_id":"","category_ids":"","custom_title":"","custom_url":"","show_child_cat":"","sub_cat_ajax":"","ajax_pagination":"","header_color":"","header_text_color":"","ajax_pagination_infinite_stop":"","td_column_number":3,"td_ajax_preloading":"","td_ajax_filter_type":"","td_ajax_filter_ids":"","td_filter_default_txt":"All","color_preset":"","border_top":"","class":"td_uid_17_5a841e3d5d536_rand","el_class":"","offset":"","css":"","tdc_css":"","tdc_css_class":"td_uid_17_5a841e3d5d536_rand","tdc_css_class_style":"td_uid_17_5a841e3d5d536_rand_style","live_filter":"","live_filter_cur_post_id":"","live_filter_cur_post_author":"","block_template_id":""}';
-block_td_uid_17_5a841e3d5d536.td_column_number = "3";
-block_td_uid_17_5a841e3d5d536.block_type = "td_block_3";
-block_td_uid_17_5a841e3d5d536.post_count = "6";
-block_td_uid_17_5a841e3d5d536.found_posts = "11";
-block_td_uid_17_5a841e3d5d536.header_color = "";
-block_td_uid_17_5a841e3d5d536.ajax_pagination_infinite_stop = "";
-block_td_uid_17_5a841e3d5d536.max_num_pages = "2";
-tdBlocksArray.push(block_td_uid_17_5a841e3d5d536);
-</script><div class="td-block-title-wrap"></div><div id=td_uid_17_5a841e3d5d536 class="td_block_inner">
-
-	<div class="td-block-row">
-
-	<div class="td-block-span4">
-
-        <div class="td_module_3 td_module_wrap td-animation-stack" >
-            <div class="td-module-image td-module-image-float">
-                <div class="td-module-thumb"><a href="http://www.kouytheavy.com/?p=799" rel="bookmark" title="Protected: 7+ advice for a successful career (and life) from Jack Ma"><img width="100" height="70" class="entry-thumb" src="http://www.kouytheavy.com/wp-content/plugins/td-blocks-red-pack/images/no-thumb/td_100x70.png" alt=""/></a></div>            </div>
-
-            <div class="td-item-details td-no-comment td-category-small">
-                <h3 class="entry-title td-module-title"><a href="http://www.kouytheavy.com/?p=799" rel="bookmark" title="Protected: 7+ advice for a successful career (and life) from Jack Ma">Protected: 7+ advice for a successful career (and life) from Jack...</a></h3>
-                <div class="td-module-meta-info">
-                                                        </div>
-            </div>
-
-                        <div class="clearfix"></div>
-        </div>
-
-        
-	</div> <!-- ./td-block-span4 -->
-
-	<div class="td-block-span4">
-
-        <div class="td_module_3 td_module_wrap td-animation-stack" >
-            <div class="td-module-image td-module-image-float">
-                <div class="td-module-thumb"><a href="http://www.kouytheavy.com/?p=795" rel="bookmark" title="សន្លឹកបៀរទី៩ដូណល់ត្រាំកា្របញ្ជូនផលិតផលឬទំនិញ Dr. Kouy Theavy"><img width="100" height="70" class="entry-thumb" src="http://www.kouytheavy.com/wp-content/uploads/2018/02/1234-100x70.png" srcset="http://www.kouytheavy.com/wp-content/uploads/2018/02/1234-100x70.png 100w, http://www.kouytheavy.com/wp-content/uploads/2018/02/1234-485x333.png 485w" sizes="(max-width: 100px) 100vw, 100px" alt="" title="សន្លឹកបៀរទី៩ដូណល់ត្រាំកា្របញ្ជូនផលិតផលឬទំនិញ Dr. Kouy Theavy"/></a></div>            </div>
-
-            <div class="td-item-details td-no-comment td-category-small">
-                <h3 class="entry-title td-module-title"><a href="http://www.kouytheavy.com/?p=795" rel="bookmark" title="សន្លឹកបៀរទី៩ដូណល់ត្រាំកា្របញ្ជូនផលិតផលឬទំនិញ Dr. Kouy Theavy">សន្លឹកបៀរទី៩ដូណល់ត្រាំកា្របញ្ជូនផលិតផលឬទំនិញ Dr. Kouy Theavy</a></h3>
-                <div class="td-module-meta-info">
-                                                        </div>
-            </div>
-
-                        <div class="clearfix"></div>
-        </div>
-
-        
-	</div> <!-- ./td-block-span4 -->
-
-	<div class="td-block-span4">
-
-        <div class="td_module_3 td_module_wrap td-animation-stack" >
-            <div class="td-module-image td-module-image-float">
-                <div class="td-module-thumb"><a href="http://www.kouytheavy.com/?p=790" rel="bookmark" title="សន្លឹកបៀរទី៨ដូណល់ត្រាំ ការវាយបកវិញ Dr. Kouy Theavy"><img width="100" height="70" class="entry-thumb" src="http://www.kouytheavy.com/wp-content/uploads/2018/02/8-card-100x70.png" srcset="http://www.kouytheavy.com/wp-content/uploads/2018/02/8-card-100x70.png 100w, http://www.kouytheavy.com/wp-content/uploads/2018/02/8-card-300x207.png 300w, http://www.kouytheavy.com/wp-content/uploads/2018/02/8-card.png 638w" sizes="(max-width: 100px) 100vw, 100px" alt="" title="សន្លឹកបៀរទី៨ដូណល់ត្រាំ ការវាយបកវិញ Dr. Kouy Theavy"/></a></div>            </div>
-
-            <div class="td-item-details td-no-comment td-category-small">
-                <h3 class="entry-title td-module-title"><a href="http://www.kouytheavy.com/?p=790" rel="bookmark" title="សន្លឹកបៀរទី៨ដូណល់ត្រាំ ការវាយបកវិញ Dr. Kouy Theavy">សន្លឹកបៀរទី៨ដូណល់ត្រាំ ការវាយបកវិញ Dr. Kouy Theavy</a></h3>
-                <div class="td-module-meta-info">
-                                                        </div>
-            </div>
-
-                        <div class="clearfix"></div>
-        </div>
-
-        
-	</div> <!-- ./td-block-span4 --></div><!--./row-fluid-->
-
-	<div class="td-block-row">
-
-	<div class="td-block-span4">
-
-        <div class="td_module_3 td_module_wrap td-animation-stack" >
-            <div class="td-module-image td-module-image-float">
-                <div class="td-module-thumb"><a href="http://www.kouytheavy.com/?p=780" rel="bookmark" title="(សន្លឹកបៀរទី ៧ ដូណលត្រាំ) Dr. Kouy Theavy"><img width="100" height="70" class="entry-thumb" src="http://www.kouytheavy.com/wp-content/uploads/2018/02/images-100x70.jpg" srcset="http://www.kouytheavy.com/wp-content/uploads/2018/02/images-100x70.jpg 100w, http://www.kouytheavy.com/wp-content/uploads/2018/02/images-245x168.jpg 245w" sizes="(max-width: 100px) 100vw, 100px" alt="" title="(សន្លឹកបៀរទី ៧ ដូណលត្រាំ) Dr. Kouy Theavy"/></a></div>            </div>
-
-            <div class="td-item-details td-no-comment td-category-small">
-                <h3 class="entry-title td-module-title"><a href="http://www.kouytheavy.com/?p=780" rel="bookmark" title="(សន្លឹកបៀរទី ៧ ដូណលត្រាំ) Dr. Kouy Theavy">(សន្លឹកបៀរទី ៧ ដូណលត្រាំ) Dr. Kouy Theavy</a></h3>
-                <div class="td-module-meta-info">
-                                                        </div>
-            </div>
-
-                        <div class="clearfix"></div>
-        </div>
-
-        
-	</div> <!-- ./td-block-span4 -->
-
-	<div class="td-block-span4">
-
-        <div class="td_module_3 td_module_wrap td-animation-stack" >
-            <div class="td-module-image td-module-image-float">
-                <div class="td-module-thumb"><a href="http://www.kouytheavy.com/?p=768" rel="bookmark" title="The origins of Money and money"><img width="100" height="70" class="entry-thumb" src="http://www.kouytheavy.com/wp-content/uploads/2018/02/Kouy-Theavy-vs-Donal-Trump-Think-BIG-Elements-of-Business-Business-iDea-mp4-100x70.jpg" alt="" title="The origins of Money and money"/></a></div>            </div>
-
-            <div class="td-item-details td-no-comment td-category-small">
-                <h3 class="entry-title td-module-title"><a href="http://www.kouytheavy.com/?p=768" rel="bookmark" title="The origins of Money and money">The origins of Money and money</a></h3>
-                <div class="td-module-meta-info">
-                                                        </div>
-            </div>
-
-                        <div class="clearfix"></div>
-        </div>
-
-        
-	</div> <!-- ./td-block-span4 -->
-
-	<div class="td-block-span4">
-
-        <div class="td_module_3 td_module_wrap td-animation-stack" >
-            <div class="td-module-image td-module-image-float">
-                <div class="td-module-thumb"><a href="http://www.kouytheavy.com/?p=748" rel="bookmark" title="ទស្សនៈទានអចលនទ្រព្យរបស់ដូណលត្រាំ​ ដោយ បណ្ឌិត ​គួយ ធាវី"><img width="100" height="56" class="entry-thumb" src="http://www.kouytheavy.com/wp-content/uploads/2018/01/kouytheavy.png" srcset="http://www.kouytheavy.com/wp-content/uploads/2018/01/kouytheavy.png 855w, http://www.kouytheavy.com/wp-content/uploads/2018/01/kouytheavy-300x168.png 300w, http://www.kouytheavy.com/wp-content/uploads/2018/01/kouytheavy-768x430.png 768w" sizes="(max-width: 100px) 100vw, 100px" alt="" title="ទស្សនៈទានអចលនទ្រព្យរបស់ដូណលត្រាំ​ ដោយ បណ្ឌិត ​គួយ ធាវី"/></a></div>            </div>
-
-            <div class="td-item-details td-no-comment td-category-small">
-                <h3 class="entry-title td-module-title"><a href="http://www.kouytheavy.com/?p=748" rel="bookmark" title="ទស្សនៈទានអចលនទ្រព្យរបស់ដូណលត្រាំ​ ដោយ បណ្ឌិត ​គួយ ធាវី">ទស្សនៈទានអចលនទ្រព្យរបស់ដូណលត្រាំ​ ដោយ បណ្ឌិត ​គួយ ធាវី</a></h3>
-                <div class="td-module-meta-info">
-                                                        </div>
-            </div>
-
-                        <div class="clearfix"></div>
-        </div>
-
-        
-	</div> <!-- ./td-block-span4 --></div><!--./row-fluid--></div></div> <!-- ./block --><div class="vc_row_inner td_uid_18_5a841e3d61ca5_rand  vc_row vc_inner wpb_row td-pb-row" ><div class="vc_column_inner td_uid_19_5a841e3d61e7b_rand  wpb_column vc_column_container td-pb-span12"><div class="vc_column-inner"><div class="wpb_wrapper"><div class="td_block_wrap td_block_big_grid_2 td_uid_20_5a841e3d61fde_rand td-grid-style-1 td-hover-1 td-big-grids td-pb-border-top td_block_template_2"  data-td-block-uid="td_uid_20_5a841e3d61fde" ><div id=td_uid_20_5a841e3d61fde class="td_block_inner"><div class="td-big-grid-wrapper td-posts-3">
-        <div class="td_module_mx5 td-animation-stack td-big-grid-post-0 td-big-grid-post td-mx-15">
-            <div class="td-module-image">
-                <div class="td-module-thumb"><a href="http://www.kouytheavy.com/?p=799" rel="bookmark" title="Protected: 7+ advice for a successful career (and life) from Jack Ma"><img width="485" height="360" class="entry-thumb" src="http://www.kouytheavy.com/wp-content/plugins/td-grids-red-pack/images/no-thumb/td_485x360.png" alt=""/></a></div>                <div class="td-post-category-wrap"></div>
-            </div>
-
-            <div class="td-meta-info-container">
-                <div class="td-meta-align">
-                    <div class="td-big-grid-meta">
-                        <h3 class="entry-title td-module-title"><a href="http://www.kouytheavy.com/?p=799" rel="bookmark" title="Protected: 7+ advice for a successful career (and life) from Jack Ma">Protected: 7+ advice for a successful career (and life) from Jack Ma</a></h3>                    </div>
-
-                    <div class="td-module-meta-info">
-                                            </div>
-                </div>
-            </div>
-        </div>
-
-        
-        <div class="td_module_mx5 td-animation-stack td-big-grid-post-1 td-big-grid-post td-mx-15">
-            <div class="td-module-image">
-                <div class="td-module-thumb"><a href="http://www.kouytheavy.com/?p=795" rel="bookmark" title="សន្លឹកបៀរទី៩ដូណល់ត្រាំកា្របញ្ជូនផលិតផលឬទំនិញ Dr. Kouy Theavy"><img width="485" height="333" class="entry-thumb" src="http://www.kouytheavy.com/wp-content/uploads/2018/02/1234-485x333.png" srcset="http://www.kouytheavy.com/wp-content/uploads/2018/02/1234-485x333.png 485w, http://www.kouytheavy.com/wp-content/uploads/2018/02/1234-100x70.png 100w" sizes="(max-width: 485px) 100vw, 485px" alt="" title="សន្លឹកបៀរទី៩ដូណល់ត្រាំកា្របញ្ជូនផលិតផលឬទំនិញ Dr. Kouy Theavy"/></a></div>                <div class="td-post-category-wrap"></div>
-            </div>
-
-            <div class="td-meta-info-container">
-                <div class="td-meta-align">
-                    <div class="td-big-grid-meta">
-                        <h3 class="entry-title td-module-title"><a href="http://www.kouytheavy.com/?p=795" rel="bookmark" title="សន្លឹកបៀរទី៩ដូណល់ត្រាំកា្របញ្ជូនផលិតផលឬទំនិញ Dr. Kouy Theavy">សន្លឹកបៀរទី៩ដូណល់ត្រាំកា្របញ្ជូនផលិតផលឬទំនិញ Dr. Kouy Theavy</a></h3>                    </div>
-
-                    <div class="td-module-meta-info">
-                                            </div>
-                </div>
-            </div>
-        </div>
-
-        
-        <div class="td_module_mx5 td-animation-stack td-big-grid-post-2 td-big-grid-post td-mx-15">
-            <div class="td-module-image">
-                <div class="td-module-thumb"><a href="http://www.kouytheavy.com/?p=790" rel="bookmark" title="សន្លឹកបៀរទី៨ដូណល់ត្រាំ ការវាយបកវិញ Dr. Kouy Theavy"><img width="485" height="360" class="entry-thumb" src="http://www.kouytheavy.com/wp-content/uploads/2018/02/8-card-485x360.png" srcset="http://www.kouytheavy.com/wp-content/uploads/2018/02/8-card-485x360.png 485w, http://www.kouytheavy.com/wp-content/uploads/2018/02/8-card-80x60.png 80w" sizes="(max-width: 485px) 100vw, 485px" alt="" title="សន្លឹកបៀរទី៨ដូណល់ត្រាំ ការវាយបកវិញ Dr. Kouy Theavy"/></a></div>                <div class="td-post-category-wrap"></div>
-            </div>
-
-            <div class="td-meta-info-container">
-                <div class="td-meta-align">
-                    <div class="td-big-grid-meta">
-                        <h3 class="entry-title td-module-title"><a href="http://www.kouytheavy.com/?p=790" rel="bookmark" title="សន្លឹកបៀរទី៨ដូណល់ត្រាំ ការវាយបកវិញ Dr. Kouy Theavy">សន្លឹកបៀរទី៨ដូណល់ត្រាំ ការវាយបកវិញ Dr. Kouy Theavy</a></h3>                    </div>
-
-                    <div class="td-module-meta-info">
-                                            </div>
-                </div>
-            </div>
-        </div>
-
-        <div class="clearfix"></div></div></div></div> <!-- ./block --></div></div></div></div></div></div></div></div><div id="td_uid_14_5a841e3d64300" class="tdc-row"><div class="vc_row td_uid_21_5a841e3d64345_rand  wpb_row td-pb-row" ><div class="vc_column td_uid_22_5a841e3d644e1_rand  wpb_column vc_column_container td-pb-span12"><div class="wpb_wrapper"></div></div></div></div>                                    </div>
-            </div> <!-- /.td-main-content-wrap -->
-
-
-                <!-- Instagram -->
+        <!--Video List-->
+        <!--panel-->
     
-    <div class="td-footer-ad td-container-wrap">
-            </div>
+                    <!--books-->
+                    <div class="td-main-content-wrap td-main-page-wrap td-container-wrap" style="display:none;">
+                        <div class="tdc-content-wrap">
+                            <div id="td_uid_1_5a841e3d5316b" class="tdc-row stretch_row_content td-stretch-content">
+                                <div class="vc_row td_uid_2_5a841e3d531b6_rand  wpb_row td-pb-row">
+                                    <div class="vc_column td_uid_3_5a841e3d5336f_rand  wpb_column vc_column_container td-pb-span12">
+                                        <div class="wpb_wrapper">
+                                            <div class="td_block_wrap td_block_big_grid_2 td_uid_4_5a841e3d53594_rand td-grid-style-1 td-hover-1 td-big-grids td-pb-border-top td_block_template_2" data-td-block-uid="td_uid_4_5a841e3d53594">
+                                                <div id=td_uid_4_5a841e3d53594 class="td_block_inner">
+                                                    <div class="td-big-grid-wrapper td-posts-3">
+                                                        <div class="td_module_mx5 td-animation-stack td-big-grid-post-0 td-big-grid-post td-mx-15">
+                                                            <div class="td-module-image">
+                                                                <div class="td-module-thumb"><a href="http://www.kouytheavy.com/?p=799" rel="bookmark" title="Protected: 7+ advice for a successful career (and life) from Jack Ma"><img width="485" height="360" class="entry-thumb" src="http://www.kouytheavy.com/wp-content/plugins/td-grids-red-pack/images/no-thumb/td_485x360.png" alt="" /></a></div>                <div class="td-post-category-wrap"></div>
+                                                            </div>
 
-    <div class="td-footer-outer-wrapper td-container-wrap ">
-        <!-- Footer -->
-        <div class="td-footer-wrapper">
-    <div class="td-container">
-        <div class="td-pb-row">
-            <div class="td-pb-span4">
-                            </div>
+                                                            <div class="td-meta-info-container">
+                                                                <div class="td-meta-align">
+                                                                    <div class="td-big-grid-meta">
+                                                                        <h3 class="entry-title td-module-title"><a href="http://www.kouytheavy.com/?p=799" rel="bookmark" title="Protected: 7+ advice for a successful career (and life) from Jack Ma">Protected: 7+ advice for a successful career (and life) from Jack Ma</a></h3>
+                                                                    </div>
 
-            <div class="td-pb-span4">
-                            </div>
+                                                                    <div class="td-module-meta-info">
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
 
-            <div class="td-pb-span4">
-                            </div>
-        </div>
 
-        <div class="td-pb-row">
-            <div class="td-pb-span12"><aside class="footer-social-wrap"></aside></div><div class="td-pb-span12"><aside class="footer-logo-wrap"><a href="http://www.kouytheavy.com/"><img src="" alt="" title=""/></a></aside></div><div class="td-pb-span12"><aside class="footer-text-wrap"><div class="footer-email-wrap">Contact us: <a href="mailto:Kouytheavy@gmail.com">Kouytheavy@gmail.com</a></div></aside></div>        </div>
-    </div>
-</div>
-        <!-- Sub Footer -->
-            <div class="td-sub-footer-container">
-        <div class="td-container">
-            <div class="td-pb-row">
-                <div class="td-pb-span12 td-sub-footer-menu">
+                                                        <div class="td_module_mx5 td-animation-stack td-big-grid-post-1 td-big-grid-post td-mx-15">
+                                                            <div class="td-module-image">
+                                                                <div class="td-module-thumb"><a href="http://www.kouytheavy.com/?p=795" rel="bookmark" title="សន្លឹកបៀរទី៩ដូណល់ត្រាំកា្របញ្ជូនផលិតផលឬទំនិញ Dr. Kouy Theavy"><img width="485" height="333" class="entry-thumb" src="http://www.kouytheavy.com/wp-content/uploads/2018/02/1234-485x333.png" srcset="http://www.kouytheavy.com/wp-content/uploads/2018/02/1234-485x333.png 485w, http://www.kouytheavy.com/wp-content/uploads/2018/02/1234-100x70.png 100w" sizes="(max-width: 485px) 100vw, 485px" alt="" title="សន្លឹកបៀរទី៩ដូណល់ត្រាំកា្របញ្ជូនផលិតផលឬទំនិញ Dr. Kouy Theavy" /></a></div>                <div class="td-post-category-wrap"></div>
+                                                            </div>
+
+                                                            <div class="td-meta-info-container">
+                                                                <div class="td-meta-align">
+                                                                    <div class="td-big-grid-meta">
+                                                                        <h3 class="entry-title td-module-title"><a href="http://www.kouytheavy.com/?p=795" rel="bookmark" title="សន្លឹកបៀរទី៩ដូណល់ត្រាំកា្របញ្ជូនផលិតផលឬទំនិញ Dr. Kouy Theavy">សន្លឹកបៀរទី៩ដូណល់ត្រាំកា្របញ្ជូនផលិតផលឬទំនិញ Dr. Kouy Theavy</a></h3>
+                                                                    </div>
+
+                                                                    <div class="td-module-meta-info">
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+
+
+                                                        <div class="td_module_mx5 td-animation-stack td-big-grid-post-2 td-big-grid-post td-mx-15">
+                                                            <div class="td-module-image">
+                                                                <div class="td-module-thumb"><a href="http://www.kouytheavy.com/?p=790" rel="bookmark" title="សន្លឹកបៀរទី៨ដូណល់ត្រាំ ការវាយបកវិញ Dr. Kouy Theavy"><img width="485" height="360" class="entry-thumb" src="http://www.kouytheavy.com/wp-content/uploads/2018/02/8-card-485x360.png" srcset="http://www.kouytheavy.com/wp-content/uploads/2018/02/8-card-485x360.png 485w, http://www.kouytheavy.com/wp-content/uploads/2018/02/8-card-80x60.png 80w" sizes="(max-width: 485px) 100vw, 485px" alt="" title="សន្លឹកបៀរទី៨ដូណល់ត្រាំ ការវាយបកវិញ Dr. Kouy Theavy" /></a></div>                <div class="td-post-category-wrap"></div>
+                                                            </div>
+
+                                                            <div class="td-meta-info-container">
+                                                                <div class="td-meta-align">
+                                                                    <div class="td-big-grid-meta">
+                                                                        <h3 class="entry-title td-module-title"><a href="http://www.kouytheavy.com/?p=790" rel="bookmark" title="សន្លឹកបៀរទី៨ដូណល់ត្រាំ ការវាយបកវិញ Dr. Kouy Theavy">សន្លឹកបៀរទី៨ដូណល់ត្រាំ ការវាយបកវិញ Dr. Kouy Theavy</a></h3>
+                                                                    </div>
+
+                                                                    <div class="td-module-meta-info">
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+
+                                                        <div class="clearfix"></div>
+                                                    </div>
+                                                </div>
+                                            </div> <!-- ./block -->
+                                        </div>
+                                    </div>
+                                </div>
+                            </div><div id="td_uid_3_5a841e3d55ce6" class="tdc-row stretch_row_content td-stretch-content">
+                                <div class="vc_row td_uid_5_5a841e3d55d2a_rand  wpb_row td-pb-row">
+                                    <div class="vc_column td_uid_6_5a841e3d55ed2_rand  wpb_column vc_column_container td-pb-span12">
+                                        <div class="wpb_wrapper">
+                                            <div class="td_block_wrap td_block_5 td_uid_7_5a841e3d560b4_rand td-pb-border-top td_block_template_2 td-column-3" data-td-block-uid="td_uid_7_5a841e3d560b4">
+                                                <script>
+var block_td_uid_7_5a841e3d560b4 = new tdBlock();
+                                                block_td_uid_7_5a841e3d560b4.id = "td_uid_7_5a841e3d560b4";
+                                                block_td_uid_7_5a841e3d560b4.atts = '{"limit":"2","sort":"","post_ids":"","tag_slug":"","autors_id":"","installed_post_types":"","category_id":"","category_ids":"","custom_title":"","custom_url":"","show_child_cat":"","sub_cat_ajax":"","ajax_pagination":"","header_color":"","header_text_color":"","ajax_pagination_infinite_stop":"","td_column_number":3,"td_ajax_preloading":"","td_ajax_filter_type":"","td_ajax_filter_ids":"","td_filter_default_txt":"All","color_preset":"","border_top":"","class":"td_uid_7_5a841e3d560b4_rand","el_class":"","offset":"","css":"","tdc_css":"","tdc_css_class":"td_uid_7_5a841e3d560b4_rand","tdc_css_class_style":"td_uid_7_5a841e3d560b4_rand_style","live_filter":"","live_filter_cur_post_id":"","live_filter_cur_post_author":"","block_template_id":""}';
+                                                block_td_uid_7_5a841e3d560b4.td_column_number = "3";
+                                                block_td_uid_7_5a841e3d560b4.block_type = "td_block_5";
+                                                block_td_uid_7_5a841e3d560b4.post_count = "2";
+                                                block_td_uid_7_5a841e3d560b4.found_posts = "11";
+                                                block_td_uid_7_5a841e3d560b4.header_color = "";
+                                                block_td_uid_7_5a841e3d560b4.ajax_pagination_infinite_stop = "";
+                                                block_td_uid_7_5a841e3d560b4.max_num_pages = "6";
+                                                tdBlocksArray.push(block_td_uid_7_5a841e3d560b4);
+                                                </script><div class="td-block-title-wrap"></div><div id=td_uid_7_5a841e3d560b4 class="td_block_inner">
+
+                                                    <div class="td-block-row">
+
+                                                        <div class="td-block-span6">
+
+                                                            <div class="td_module_5 td_module_wrap td-animation-stack">
+                                                                <div class="td-module-image td-module-image-float">
+                                                                    <div class="td-module-thumb"><a href="http://www.kouytheavy.com/?p=799" rel="bookmark" title="Protected: 7+ advice for a successful career (and life) from Jack Ma"><img width="260" height="195" class="entry-thumb" src="http://www.kouytheavy.com/wp-content/themes/ionMag/images/no-thumb/td_260x195.png" alt="" /></a></div>
+                                                                </div>
+
+                                                                <div class="td-item-details td-category-small">
+
+                                                                    <h3 class="entry-title td-module-title"><a href="http://www.kouytheavy.com/?p=799" rel="bookmark" title="Protected: 7+ advice for a successful career (and life) from Jack Ma">Protected: 7+ advice for a successful career (and life) from Jack...</a></h3>
+                                                                    <div class="td-module-meta-info">
+                                                                        <div class="td-module-comments"><a href="http://www.kouytheavy.com/?p=799#respond">0</a></div>
+                                                                    </div>
+
+                                                                    <div class="td-excerpt">
+                                                                    </div>
+                                                                </div>
+
+                                                                <div class="clearfix"></div>
+                                                            </div>
+
+
+                                                        </div> <!-- ./td-block-span6 -->
+
+                                                        <div class="td-block-span6">
+
+                                                            <div class="td_module_5 td_module_wrap td-animation-stack">
+                                                                <div class="td-module-image td-module-image-float">
+                                                                    <div class="td-module-thumb"><a href="http://www.kouytheavy.com/?p=795" rel="bookmark" title="សន្លឹកបៀរទី៩ដូណល់ត្រាំកា្របញ្ជូនផលិតផលឬទំនិញ Dr. Kouy Theavy"><img width="260" height="195" class="entry-thumb" src="http://www.kouytheavy.com/wp-content/uploads/2018/02/1234-260x195.png" srcset="http://www.kouytheavy.com/wp-content/uploads/2018/02/1234-260x195.png 260w, http://www.kouytheavy.com/wp-content/uploads/2018/02/1234-80x60.png 80w, http://www.kouytheavy.com/wp-content/uploads/2018/02/1234-245x184.png 245w" sizes="(max-width: 260px) 100vw, 260px" alt="" title="សន្លឹកបៀរទី៩ដូណល់ត្រាំកា្របញ្ជូនផលិតផលឬទំនិញ Dr. Kouy Theavy" /></a></div>
+                                                                </div>
+
+                                                                <div class="td-item-details td-category-small">
+
+                                                                    <h3 class="entry-title td-module-title"><a href="http://www.kouytheavy.com/?p=795" rel="bookmark" title="សន្លឹកបៀរទី៩ដូណល់ត្រាំកា្របញ្ជូនផលិតផលឬទំនិញ Dr. Kouy Theavy">សន្លឹកបៀរទី៩ដូណល់ត្រាំកា្របញ្ជូនផលិតផលឬទំនិញ Dr. Kouy Theavy</a></h3>
+                                                                    <div class="td-module-meta-info">
+                                                                        <div class="td-module-comments"><a href="http://www.kouytheavy.com/?p=795#respond">0</a></div>
+                                                                    </div>
+
+                                                                    <div class="td-excerpt">
+                                                                        ﻿
+                                                                    </div>
+                                                                </div>
+
+                                                                <div class="clearfix"></div>
+                                                            </div>
+
+
+                                                        </div> <!-- ./td-block-span6 -->
+                                                    </div><!--./row-fluid-->
+                                                </div>
+                                            </div> <!-- ./block --><div class="wpb_wrapper td_block_empty_space td_block_wrap vc_empty_space td_uid_8_5a841e3d584d0_rand " style="height: 32px"></div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div><div id="td_uid_6_5a841e3d5859f" class="tdc-row stretch_row_content td-stretch-content">
+                                <div class="vc_row td_uid_9_5a841e3d585e1_rand  wpb_row td-pb-row">
+                                    <div class="vc_column td_uid_10_5a841e3d5877e_rand  wpb_column vc_column_container td-pb-span12">
+                                        <div class="wpb_wrapper">
+                                            <div class="td_block_wrap td_block_3 td_uid_11_5a841e3d58968_rand td-pb-border-top td_block_template_2 td-column-3" data-td-block-uid="td_uid_11_5a841e3d58968">
+                                                <script>
+var block_td_uid_11_5a841e3d58968 = new tdBlock();
+                                                block_td_uid_11_5a841e3d58968.id = "td_uid_11_5a841e3d58968";
+                                                block_td_uid_11_5a841e3d58968.atts = '{"limit":"3","sort":"","post_ids":"","tag_slug":"","autors_id":"","installed_post_types":"","category_id":"","category_ids":"","custom_title":"","custom_url":"","show_child_cat":"","sub_cat_ajax":"","ajax_pagination":"","header_color":"","header_text_color":"","ajax_pagination_infinite_stop":"","td_column_number":3,"td_ajax_preloading":"","td_ajax_filter_type":"","td_ajax_filter_ids":"","td_filter_default_txt":"All","color_preset":"","border_top":"","class":"td_uid_11_5a841e3d58968_rand","el_class":"","offset":"","css":"","tdc_css":"","tdc_css_class":"td_uid_11_5a841e3d58968_rand","tdc_css_class_style":"td_uid_11_5a841e3d58968_rand_style","live_filter":"","live_filter_cur_post_id":"","live_filter_cur_post_author":"","block_template_id":""}';
+                                                block_td_uid_11_5a841e3d58968.td_column_number = "3";
+                                                block_td_uid_11_5a841e3d58968.block_type = "td_block_3";
+                                                block_td_uid_11_5a841e3d58968.post_count = "3";
+                                                block_td_uid_11_5a841e3d58968.found_posts = "11";
+                                                block_td_uid_11_5a841e3d58968.header_color = "";
+                                                block_td_uid_11_5a841e3d58968.ajax_pagination_infinite_stop = "";
+                                                block_td_uid_11_5a841e3d58968.max_num_pages = "4";
+                                                tdBlocksArray.push(block_td_uid_11_5a841e3d58968);
+                                                </script><div class="td-block-title-wrap"></div><div id=td_uid_11_5a841e3d58968 class="td_block_inner">
+
+                                                    <div class="td-block-row">
+
+                                                        <div class="td-block-span4">
+
+                                                            <div class="td_module_3 td_module_wrap td-animation-stack">
+                                                                <div class="td-module-image td-module-image-float">
+                                                                    <div class="td-module-thumb"><a href="http://www.kouytheavy.com/?p=799" rel="bookmark" title="Protected: 7+ advice for a successful career (and life) from Jack Ma"><img width="100" height="70" class="entry-thumb" src="http://www.kouytheavy.com/wp-content/plugins/td-blocks-red-pack/images/no-thumb/td_100x70.png" alt="" /></a></div>
+                                                                </div>
+
+                                                                <div class="td-item-details td-no-comment td-category-small">
+                                                                    <h3 class="entry-title td-module-title"><a href="http://www.kouytheavy.com/?p=799" rel="bookmark" title="Protected: 7+ advice for a successful career (and life) from Jack Ma">Protected: 7+ advice for a successful career (and life) from Jack...</a></h3>
+                                                                    <div class="td-module-meta-info">
+                                                                    </div>
+                                                                </div>
+
+                                                                <div class="clearfix"></div>
+                                                            </div>
+
+
+                                                        </div> <!-- ./td-block-span4 -->
+
+                                                        <div class="td-block-span4">
+
+                                                            <div class="td_module_3 td_module_wrap td-animation-stack">
+                                                                <div class="td-module-image td-module-image-float">
+                                                                    <div class="td-module-thumb"><a href="http://www.kouytheavy.com/?p=795" rel="bookmark" title="សន្លឹកបៀរទី៩ដូណល់ត្រាំកា្របញ្ជូនផលិតផលឬទំនិញ Dr. Kouy Theavy"><img width="100" height="70" class="entry-thumb" src="http://www.kouytheavy.com/wp-content/uploads/2018/02/1234-100x70.png" srcset="http://www.kouytheavy.com/wp-content/uploads/2018/02/1234-100x70.png 100w, http://www.kouytheavy.com/wp-content/uploads/2018/02/1234-485x333.png 485w" sizes="(max-width: 100px) 100vw, 100px" alt="" title="សន្លឹកបៀរទី៩ដូណល់ត្រាំកា្របញ្ជូនផលិតផលឬទំនិញ Dr. Kouy Theavy" /></a></div>
+                                                                </div>
+
+                                                                <div class="td-item-details td-no-comment td-category-small">
+                                                                    <h3 class="entry-title td-module-title"><a href="http://www.kouytheavy.com/?p=795" rel="bookmark" title="សន្លឹកបៀរទី៩ដូណល់ត្រាំកា្របញ្ជូនផលិតផលឬទំនិញ Dr. Kouy Theavy">សន្លឹកបៀរទី៩ដូណល់ត្រាំកា្របញ្ជូនផលិតផលឬទំនិញ Dr. Kouy Theavy</a></h3>
+                                                                    <div class="td-module-meta-info">
+                                                                    </div>
+                                                                </div>
+
+                                                                <div class="clearfix"></div>
+                                                            </div>
+
+
+                                                        </div> <!-- ./td-block-span4 -->
+
+                                                        <div class="td-block-span4">
+
+                                                            <div class="td_module_3 td_module_wrap td-animation-stack">
+                                                                <div class="td-module-image td-module-image-float">
+                                                                    <div class="td-module-thumb"><a href="http://www.kouytheavy.com/?p=790" rel="bookmark" title="សន្លឹកបៀរទី៨ដូណល់ត្រាំ ការវាយបកវិញ Dr. Kouy Theavy"><img width="100" height="70" class="entry-thumb" src="http://www.kouytheavy.com/wp-content/uploads/2018/02/8-card-100x70.png" srcset="http://www.kouytheavy.com/wp-content/uploads/2018/02/8-card-100x70.png 100w, http://www.kouytheavy.com/wp-content/uploads/2018/02/8-card-300x207.png 300w, http://www.kouytheavy.com/wp-content/uploads/2018/02/8-card.png 638w" sizes="(max-width: 100px) 100vw, 100px" alt="" title="សន្លឹកបៀរទី៨ដូណល់ត្រាំ ការវាយបកវិញ Dr. Kouy Theavy" /></a></div>
+                                                                </div>
+
+                                                                <div class="td-item-details td-no-comment td-category-small">
+                                                                    <h3 class="entry-title td-module-title"><a href="http://www.kouytheavy.com/?p=790" rel="bookmark" title="សន្លឹកបៀរទី៨ដូណល់ត្រាំ ការវាយបកវិញ Dr. Kouy Theavy">សន្លឹកបៀរទី៨ដូណល់ត្រាំ ការវាយបកវិញ Dr. Kouy Theavy</a></h3>
+                                                                    <div class="td-module-meta-info">
+                                                                    </div>
+                                                                </div>
+
+                                                                <div class="clearfix"></div>
+                                                            </div>
+
+
+                                                        </div> <!-- ./td-block-span4 -->
+                                                    </div><!--./row-fluid-->
+                                                </div>
+                                            </div> <!-- ./block -->
+                                        </div>
+                                    </div>
+                                </div>
+                            </div><div id="td_uid_8_5a841e3d5ac0b" class="tdc-row stretch_row_content td-stretch-content">
+                                <div class="vc_row td_uid_12_5a841e3d5ac4f_rand  wpb_row td-pb-row">
+                                    <div class="vc_column td_uid_13_5a841e3d5aded_rand  wpb_column vc_column_container td-pb-span12">
+                                        <div class="wpb_wrapper">
+                                            <div class="td_block_wrap td_block_big_grid_2 td_uid_14_5a841e3d5af47_rand td-grid-style-1 td-hover-1 td-big-grids td-pb-border-top td_block_template_2" data-td-block-uid="td_uid_14_5a841e3d5af47">
+                                                <div id=td_uid_14_5a841e3d5af47 class="td_block_inner">
+                                                    <div class="td-big-grid-wrapper td-posts-3">
+                                                        <div class="td_module_mx5 td-animation-stack td-big-grid-post-0 td-big-grid-post td-mx-15">
+                                                            <div class="td-module-image">
+                                                                <div class="td-module-thumb"><a href="http://www.kouytheavy.com/?p=799" rel="bookmark" title="Protected: 7+ advice for a successful career (and life) from Jack Ma"><img width="485" height="360" class="entry-thumb" src="http://www.kouytheavy.com/wp-content/plugins/td-grids-red-pack/images/no-thumb/td_485x360.png" alt="" /></a></div>                <div class="td-post-category-wrap"></div>
+                                                            </div>
+
+                                                            <div class="td-meta-info-container">
+                                                                <div class="td-meta-align">
+                                                                    <div class="td-big-grid-meta">
+                                                                        <h3 class="entry-title td-module-title"><a href="http://www.kouytheavy.com/?p=799" rel="bookmark" title="Protected: 7+ advice for a successful career (and life) from Jack Ma">Protected: 7+ advice for a successful career (and life) from Jack Ma</a></h3>
+                                                                    </div>
+
+                                                                    <div class="td-module-meta-info">
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+
+
+                                                        <div class="td_module_mx5 td-animation-stack td-big-grid-post-1 td-big-grid-post td-mx-15">
+                                                            <div class="td-module-image">
+                                                                <div class="td-module-thumb"><a href="http://www.kouytheavy.com/?p=795" rel="bookmark" title="សន្លឹកបៀរទី៩ដូណល់ត្រាំកា្របញ្ជូនផលិតផលឬទំនិញ Dr. Kouy Theavy"><img width="485" height="333" class="entry-thumb" src="http://www.kouytheavy.com/wp-content/uploads/2018/02/1234-485x333.png" srcset="http://www.kouytheavy.com/wp-content/uploads/2018/02/1234-485x333.png 485w, http://www.kouytheavy.com/wp-content/uploads/2018/02/1234-100x70.png 100w" sizes="(max-width: 485px) 100vw, 485px" alt="" title="សន្លឹកបៀរទី៩ដូណល់ត្រាំកា្របញ្ជូនផលិតផលឬទំនិញ Dr. Kouy Theavy" /></a></div>                <div class="td-post-category-wrap"></div>
+                                                            </div>
+
+                                                            <div class="td-meta-info-container">
+                                                                <div class="td-meta-align">
+                                                                    <div class="td-big-grid-meta">
+                                                                        <h3 class="entry-title td-module-title"><a href="http://www.kouytheavy.com/?p=795" rel="bookmark" title="សន្លឹកបៀរទី៩ដូណល់ត្រាំកា្របញ្ជូនផលិតផលឬទំនិញ Dr. Kouy Theavy">សន្លឹកបៀរទី៩ដូណល់ត្រាំកា្របញ្ជូនផលិតផលឬទំនិញ Dr. Kouy Theavy</a></h3>
+                                                                    </div>
+
+                                                                    <div class="td-module-meta-info">
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+
+
+                                                        <div class="td_module_mx5 td-animation-stack td-big-grid-post-2 td-big-grid-post td-mx-15">
+                                                            <div class="td-module-image">
+                                                                <div class="td-module-thumb"><a href="http://www.kouytheavy.com/?p=790" rel="bookmark" title="សន្លឹកបៀរទី៨ដូណល់ត្រាំ ការវាយបកវិញ Dr. Kouy Theavy"><img width="485" height="360" class="entry-thumb" src="http://www.kouytheavy.com/wp-content/uploads/2018/02/8-card-485x360.png" srcset="http://www.kouytheavy.com/wp-content/uploads/2018/02/8-card-485x360.png 485w, http://www.kouytheavy.com/wp-content/uploads/2018/02/8-card-80x60.png 80w" sizes="(max-width: 485px) 100vw, 485px" alt="" title="សន្លឹកបៀរទី៨ដូណល់ត្រាំ ការវាយបកវិញ Dr. Kouy Theavy" /></a></div>                <div class="td-post-category-wrap"></div>
+                                                            </div>
+
+                                                            <div class="td-meta-info-container">
+                                                                <div class="td-meta-align">
+                                                                    <div class="td-big-grid-meta">
+                                                                        <h3 class="entry-title td-module-title"><a href="http://www.kouytheavy.com/?p=790" rel="bookmark" title="សន្លឹកបៀរទី៨ដូណល់ត្រាំ ការវាយបកវិញ Dr. Kouy Theavy">សន្លឹកបៀរទី៨ដូណល់ត្រាំ ការវាយបកវិញ Dr. Kouy Theavy</a></h3>
+                                                                    </div>
+
+                                                                    <div class="td-module-meta-info">
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+
+                                                        <div class="clearfix"></div>
+                                                    </div>
+                                                </div>
+                                            </div> <!-- ./block -->
+                                        </div>
+                                    </div>
+                                </div>
+                            </div><div id="td_uid_10_5a841e3d5d1cb" class="tdc-row stretch_row_content td-stretch-content">
+                                <div class="vc_row td_uid_15_5a841e3d5d20f_rand  wpb_row td-pb-row">
+                                    <div class="vc_column td_uid_16_5a841e3d5d3bd_rand  wpb_column vc_column_container td-pb-span12">
+                                        <div class="wpb_wrapper">
+                                            <div class="td_block_wrap td_block_3 td_uid_17_5a841e3d5d536_rand td-pb-border-top td_block_template_2 td-column-3" data-td-block-uid="td_uid_17_5a841e3d5d536">
+                                                <script>
+var block_td_uid_17_5a841e3d5d536 = new tdBlock();
+                                                block_td_uid_17_5a841e3d5d536.id = "td_uid_17_5a841e3d5d536";
+                                                block_td_uid_17_5a841e3d5d536.atts = '{"limit":"6","sort":"","post_ids":"","tag_slug":"","autors_id":"","installed_post_types":"","category_id":"","category_ids":"","custom_title":"","custom_url":"","show_child_cat":"","sub_cat_ajax":"","ajax_pagination":"","header_color":"","header_text_color":"","ajax_pagination_infinite_stop":"","td_column_number":3,"td_ajax_preloading":"","td_ajax_filter_type":"","td_ajax_filter_ids":"","td_filter_default_txt":"All","color_preset":"","border_top":"","class":"td_uid_17_5a841e3d5d536_rand","el_class":"","offset":"","css":"","tdc_css":"","tdc_css_class":"td_uid_17_5a841e3d5d536_rand","tdc_css_class_style":"td_uid_17_5a841e3d5d536_rand_style","live_filter":"","live_filter_cur_post_id":"","live_filter_cur_post_author":"","block_template_id":""}';
+                                                block_td_uid_17_5a841e3d5d536.td_column_number = "3";
+                                                block_td_uid_17_5a841e3d5d536.block_type = "td_block_3";
+                                                block_td_uid_17_5a841e3d5d536.post_count = "6";
+                                                block_td_uid_17_5a841e3d5d536.found_posts = "11";
+                                                block_td_uid_17_5a841e3d5d536.header_color = "";
+                                                block_td_uid_17_5a841e3d5d536.ajax_pagination_infinite_stop = "";
+                                                block_td_uid_17_5a841e3d5d536.max_num_pages = "2";
+                                                tdBlocksArray.push(block_td_uid_17_5a841e3d5d536);
+                                                </script><div class="td-block-title-wrap"></div><div id=td_uid_17_5a841e3d5d536 class="td_block_inner">
+
+                                                    <div class="td-block-row">
+
+                                                        <div class="td-block-span4">
+
+                                                            <div class="td_module_3 td_module_wrap td-animation-stack">
+                                                                <div class="td-module-image td-module-image-float">
+                                                                    <div class="td-module-thumb"><a href="http://www.kouytheavy.com/?p=799" rel="bookmark" title="Protected: 7+ advice for a successful career (and life) from Jack Ma"><img width="100" height="70" class="entry-thumb" src="http://www.kouytheavy.com/wp-content/plugins/td-blocks-red-pack/images/no-thumb/td_100x70.png" alt="" /></a></div>
+                                                                </div>
+
+                                                                <div class="td-item-details td-no-comment td-category-small">
+                                                                    <h3 class="entry-title td-module-title"><a href="http://www.kouytheavy.com/?p=799" rel="bookmark" title="Protected: 7+ advice for a successful career (and life) from Jack Ma">Protected: 7+ advice for a successful career (and life) from Jack...</a></h3>
+                                                                    <div class="td-module-meta-info">
+                                                                    </div>
+                                                                </div>
+
+                                                                <div class="clearfix"></div>
+                                                            </div>
+
+
+                                                        </div> <!-- ./td-block-span4 -->
+
+                                                        <div class="td-block-span4">
+
+                                                            <div class="td_module_3 td_module_wrap td-animation-stack">
+                                                                <div class="td-module-image td-module-image-float">
+                                                                    <div class="td-module-thumb"><a href="http://www.kouytheavy.com/?p=795" rel="bookmark" title="សន្លឹកបៀរទី៩ដូណល់ត្រាំកា្របញ្ជូនផលិតផលឬទំនិញ Dr. Kouy Theavy"><img width="100" height="70" class="entry-thumb" src="http://www.kouytheavy.com/wp-content/uploads/2018/02/1234-100x70.png" srcset="http://www.kouytheavy.com/wp-content/uploads/2018/02/1234-100x70.png 100w, http://www.kouytheavy.com/wp-content/uploads/2018/02/1234-485x333.png 485w" sizes="(max-width: 100px) 100vw, 100px" alt="" title="សន្លឹកបៀរទី៩ដូណល់ត្រាំកា្របញ្ជូនផលិតផលឬទំនិញ Dr. Kouy Theavy" /></a></div>
+                                                                </div>
+
+                                                                <div class="td-item-details td-no-comment td-category-small">
+                                                                    <h3 class="entry-title td-module-title"><a href="http://www.kouytheavy.com/?p=795" rel="bookmark" title="សន្លឹកបៀរទី៩ដូណល់ត្រាំកា្របញ្ជូនផលិតផលឬទំនិញ Dr. Kouy Theavy">សន្លឹកបៀរទី៩ដូណល់ត្រាំកា្របញ្ជូនផលិតផលឬទំនិញ Dr. Kouy Theavy</a></h3>
+                                                                    <div class="td-module-meta-info">
+                                                                    </div>
+                                                                </div>
+
+                                                                <div class="clearfix"></div>
+                                                            </div>
+
+
+                                                        </div> <!-- ./td-block-span4 -->
+
+                                                        <div class="td-block-span4">
+
+                                                            <div class="td_module_3 td_module_wrap td-animation-stack">
+                                                                <div class="td-module-image td-module-image-float">
+                                                                    <div class="td-module-thumb"><a href="http://www.kouytheavy.com/?p=790" rel="bookmark" title="សន្លឹកបៀរទី៨ដូណល់ត្រាំ ការវាយបកវិញ Dr. Kouy Theavy"><img width="100" height="70" class="entry-thumb" src="http://www.kouytheavy.com/wp-content/uploads/2018/02/8-card-100x70.png" srcset="http://www.kouytheavy.com/wp-content/uploads/2018/02/8-card-100x70.png 100w, http://www.kouytheavy.com/wp-content/uploads/2018/02/8-card-300x207.png 300w, http://www.kouytheavy.com/wp-content/uploads/2018/02/8-card.png 638w" sizes="(max-width: 100px) 100vw, 100px" alt="" title="សន្លឹកបៀរទី៨ដូណល់ត្រាំ ការវាយបកវិញ Dr. Kouy Theavy" /></a></div>
+                                                                </div>
+
+                                                                <div class="td-item-details td-no-comment td-category-small">
+                                                                    <h3 class="entry-title td-module-title"><a href="http://www.kouytheavy.com/?p=790" rel="bookmark" title="សន្លឹកបៀរទី៨ដូណល់ត្រាំ ការវាយបកវិញ Dr. Kouy Theavy">សន្លឹកបៀរទី៨ដូណល់ត្រាំ ការវាយបកវិញ Dr. Kouy Theavy</a></h3>
+                                                                    <div class="td-module-meta-info">
+                                                                    </div>
+                                                                </div>
+
+                                                                <div class="clearfix"></div>
+                                                            </div>
+
+
+                                                        </div> <!-- ./td-block-span4 -->
+                                                    </div><!--./row-fluid-->
+
+                                                    <div class="td-block-row">
+
+                                                        <div class="td-block-span4">
+
+                                                            <div class="td_module_3 td_module_wrap td-animation-stack">
+                                                                <div class="td-module-image td-module-image-float">
+                                                                    <div class="td-module-thumb"><a href="http://www.kouytheavy.com/?p=780" rel="bookmark" title="(សន្លឹកបៀរទី ៧ ដូណលត្រាំ) Dr. Kouy Theavy"><img width="100" height="70" class="entry-thumb" src="http://www.kouytheavy.com/wp-content/uploads/2018/02/images-100x70.jpg" srcset="http://www.kouytheavy.com/wp-content/uploads/2018/02/images-100x70.jpg 100w, http://www.kouytheavy.com/wp-content/uploads/2018/02/images-245x168.jpg 245w" sizes="(max-width: 100px) 100vw, 100px" alt="" title="(សន្លឹកបៀរទី ៧ ដូណលត្រាំ) Dr. Kouy Theavy" /></a></div>
+                                                                </div>
+
+                                                                <div class="td-item-details td-no-comment td-category-small">
+                                                                    <h3 class="entry-title td-module-title"><a href="http://www.kouytheavy.com/?p=780" rel="bookmark" title="(សន្លឹកបៀរទី ៧ ដូណលត្រាំ) Dr. Kouy Theavy">(សន្លឹកបៀរទី ៧ ដូណលត្រាំ) Dr. Kouy Theavy</a></h3>
+                                                                    <div class="td-module-meta-info">
+                                                                    </div>
+                                                                </div>
+
+                                                                <div class="clearfix"></div>
+                                                            </div>
+
+
+                                                        </div> <!-- ./td-block-span4 -->
+
+                                                        <div class="td-block-span4">
+
+                                                            <div class="td_module_3 td_module_wrap td-animation-stack">
+                                                                <div class="td-module-image td-module-image-float">
+                                                                    <div class="td-module-thumb"><a href="http://www.kouytheavy.com/?p=768" rel="bookmark" title="The origins of Money and money"><img width="100" height="70" class="entry-thumb" src="http://www.kouytheavy.com/wp-content/uploads/2018/02/Kouy-Theavy-vs-Donal-Trump-Think-BIG-Elements-of-Business-Business-iDea-mp4-100x70.jpg" alt="" title="The origins of Money and money" /></a></div>
+                                                                </div>
+
+                                                                <div class="td-item-details td-no-comment td-category-small">
+                                                                    <h3 class="entry-title td-module-title"><a href="http://www.kouytheavy.com/?p=768" rel="bookmark" title="The origins of Money and money">The origins of Money and money</a></h3>
+                                                                    <div class="td-module-meta-info">
+                                                                    </div>
+                                                                </div>
+
+                                                                <div class="clearfix"></div>
+                                                            </div>
+
+
+                                                        </div> <!-- ./td-block-span4 -->
+
+                                                        <div class="td-block-span4">
+
+                                                            <div class="td_module_3 td_module_wrap td-animation-stack">
+                                                                <div class="td-module-image td-module-image-float">
+                                                                    <div class="td-module-thumb"><a href="http://www.kouytheavy.com/?p=748" rel="bookmark" title="ទស្សនៈទានអចលនទ្រព្យរបស់ដូណលត្រាំ​ ដោយ បណ្ឌិត ​គួយ ធាវី"><img width="100" height="56" class="entry-thumb" src="http://www.kouytheavy.com/wp-content/uploads/2018/01/kouytheavy.png" srcset="http://www.kouytheavy.com/wp-content/uploads/2018/01/kouytheavy.png 855w, http://www.kouytheavy.com/wp-content/uploads/2018/01/kouytheavy-300x168.png 300w, http://www.kouytheavy.com/wp-content/uploads/2018/01/kouytheavy-768x430.png 768w" sizes="(max-width: 100px) 100vw, 100px" alt="" title="ទស្សនៈទានអចលនទ្រព្យរបស់ដូណលត្រាំ​ ដោយ បណ្ឌិត ​គួយ ធាវី" /></a></div>
+                                                                </div>
+
+                                                                <div class="td-item-details td-no-comment td-category-small">
+                                                                    <h3 class="entry-title td-module-title"><a href="http://www.kouytheavy.com/?p=748" rel="bookmark" title="ទស្សនៈទានអចលនទ្រព្យរបស់ដូណលត្រាំ​ ដោយ បណ្ឌិត ​គួយ ធាវី">ទស្សនៈទានអចលនទ្រព្យរបស់ដូណលត្រាំ​ ដោយ បណ្ឌិត ​គួយ ធាវី</a></h3>
+                                                                    <div class="td-module-meta-info">
+                                                                    </div>
+                                                                </div>
+
+                                                                <div class="clearfix"></div>
+                                                            </div>
+
+
+                                                        </div> <!-- ./td-block-span4 -->
+                                                    </div><!--./row-fluid-->
+                                                </div>
+                                            </div> <!-- ./block --><div class="vc_row_inner td_uid_18_5a841e3d61ca5_rand  vc_row vc_inner wpb_row td-pb-row">
+                                                <div class="vc_column_inner td_uid_19_5a841e3d61e7b_rand  wpb_column vc_column_container td-pb-span12">
+                                                    <div class="vc_column-inner">
+                                                        <div class="wpb_wrapper">
+                                                            <div class="td_block_wrap td_block_big_grid_2 td_uid_20_5a841e3d61fde_rand td-grid-style-1 td-hover-1 td-big-grids td-pb-border-top td_block_template_2" data-td-block-uid="td_uid_20_5a841e3d61fde">
+                                                                <div id=td_uid_20_5a841e3d61fde class="td_block_inner">
+                                                                    <div class="td-big-grid-wrapper td-posts-3">
+                                                                        <div class="td_module_mx5 td-animation-stack td-big-grid-post-0 td-big-grid-post td-mx-15">
+                                                                            <div class="td-module-image">
+                                                                                <div class="td-module-thumb"><a href="http://www.kouytheavy.com/?p=799" rel="bookmark" title="Protected: 7+ advice for a successful career (and life) from Jack Ma"><img width="485" height="360" class="entry-thumb" src="http://www.kouytheavy.com/wp-content/plugins/td-grids-red-pack/images/no-thumb/td_485x360.png" alt="" /></a></div>                <div class="td-post-category-wrap"></div>
+                                                                            </div>
+
+                                                                            <div class="td-meta-info-container">
+                                                                                <div class="td-meta-align">
+                                                                                    <div class="td-big-grid-meta">
+                                                                                        <h3 class="entry-title td-module-title"><a href="http://www.kouytheavy.com/?p=799" rel="bookmark" title="Protected: 7+ advice for a successful career (and life) from Jack Ma">Protected: 7+ advice for a successful career (and life) from Jack Ma</a></h3>
+                                                                                    </div>
+
+                                                                                    <div class="td-module-meta-info">
+                                                                                    </div>
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+
+
+                                                                        <div class="td_module_mx5 td-animation-stack td-big-grid-post-1 td-big-grid-post td-mx-15">
+                                                                            <div class="td-module-image">
+                                                                                <div class="td-module-thumb"><a href="http://www.kouytheavy.com/?p=795" rel="bookmark" title="សន្លឹកបៀរទី៩ដូណល់ត្រាំកា្របញ្ជូនផលិតផលឬទំនិញ Dr. Kouy Theavy"><img width="485" height="333" class="entry-thumb" src="http://www.kouytheavy.com/wp-content/uploads/2018/02/1234-485x333.png" srcset="http://www.kouytheavy.com/wp-content/uploads/2018/02/1234-485x333.png 485w, http://www.kouytheavy.com/wp-content/uploads/2018/02/1234-100x70.png 100w" sizes="(max-width: 485px) 100vw, 485px" alt="" title="សន្លឹកបៀរទី៩ដូណល់ត្រាំកា្របញ្ជូនផលិតផលឬទំនិញ Dr. Kouy Theavy" /></a></div>                <div class="td-post-category-wrap"></div>
+                                                                            </div>
+
+                                                                            <div class="td-meta-info-container">
+                                                                                <div class="td-meta-align">
+                                                                                    <div class="td-big-grid-meta">
+                                                                                        <h3 class="entry-title td-module-title"><a href="http://www.kouytheavy.com/?p=795" rel="bookmark" title="សន្លឹកបៀរទី៩ដូណល់ត្រាំកា្របញ្ជូនផលិតផលឬទំនិញ Dr. Kouy Theavy">សន្លឹកបៀរទី៩ដូណល់ត្រាំកា្របញ្ជូនផលិតផលឬទំនិញ Dr. Kouy Theavy</a></h3>
+                                                                                    </div>
+
+                                                                                    <div class="td-module-meta-info">
+                                                                                    </div>
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+
+
+                                                                        <div class="td_module_mx5 td-animation-stack td-big-grid-post-2 td-big-grid-post td-mx-15">
+                                                                            <div class="td-module-image">
+                                                                                <div class="td-module-thumb"><a href="http://www.kouytheavy.com/?p=790" rel="bookmark" title="សន្លឹកបៀរទី៨ដូណល់ត្រាំ ការវាយបកវិញ Dr. Kouy Theavy"><img width="485" height="360" class="entry-thumb" src="http://www.kouytheavy.com/wp-content/uploads/2018/02/8-card-485x360.png" srcset="http://www.kouytheavy.com/wp-content/uploads/2018/02/8-card-485x360.png 485w, http://www.kouytheavy.com/wp-content/uploads/2018/02/8-card-80x60.png 80w" sizes="(max-width: 485px) 100vw, 485px" alt="" title="សន្លឹកបៀរទី៨ដូណល់ត្រាំ ការវាយបកវិញ Dr. Kouy Theavy" /></a></div>                <div class="td-post-category-wrap"></div>
+                                                                            </div>
+
+                                                                            <div class="td-meta-info-container">
+                                                                                <div class="td-meta-align">
+                                                                                    <div class="td-big-grid-meta">
+                                                                                        <h3 class="entry-title td-module-title"><a href="http://www.kouytheavy.com/?p=790" rel="bookmark" title="សន្លឹកបៀរទី៨ដូណល់ត្រាំ ការវាយបកវិញ Dr. Kouy Theavy">សន្លឹកបៀរទី៨ដូណល់ត្រាំ ការវាយបកវិញ Dr. Kouy Theavy</a></h3>
+                                                                                    </div>
+
+                                                                                    <div class="td-module-meta-info">
+                                                                                    </div>
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+
+                                                                        <div class="clearfix"></div>
+                                                                    </div>
+                                                                </div>
+                                                            </div> <!-- ./block -->
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div><div id="td_uid_14_5a841e3d64300" class="tdc-row"><div class="vc_row td_uid_21_5a841e3d64345_rand  wpb_row td-pb-row"><div class="vc_column td_uid_22_5a841e3d644e1_rand  wpb_column vc_column_container td-pb-span12"><div class="wpb_wrapper"></div></div></div></div>
+                        </div>
+                    </div> <!-- /.td-main-content-wrap -->
+                    <!-- Instagram -->
+
+                    <div class="td-footer-ad td-container-wrap">
+                    </div>
+
+                    <div class="td-footer-outer-wrapper td-container-wrap ">
+                        <!-- Footer -->
+                        <div class="td-footer-wrapper">
+                            <div class="td-container">
+                                <div class="td-pb-row">
+                                    <div class="td-pb-span4">
                                     </div>
 
-                <div class="td-pb-span12 td-sub-footer-copy">
-                    
-                </div>
-            </div>
-        </div>
-    </div>
-    
-    </div>
-</div><!--close td-outer-wrap-->
+                                    <div class="td-pb-span4">
+                                    </div>
 
-        <div id="fb-root"></div>
-        <script>(function(d, s, id) {
-          var js, fjs = d.getElementsByTagName(s)[0];
-          if (d.getElementById(id)) return;
-          js = d.createElement(s); js.id = id;
-          js.src = "//connect.facebook.net/en_US/sdk.js#xfbml=1&appId=&version=v2.3";
-          fjs.parentNode.insertBefore(js, fjs);
-        }(document, 'script', 'facebook-jssdk'));</script>	
-    <!-- YouTube Channel 3 --><script type="text/javascript">function ytc_init_MPAU() {jQuery('.ytc-lightbox').magnificPopupAU({disableOn:320,type:'iframe',mainClass:'ytc-mfp-lightbox',removalDelay:160,preloader:false,fixedContentPos:false});}jQuery(window).on('load',function(){ytc_init_MPAU();});jQuery(document).ajaxComplete(function(){ytc_init_MPAU();});</script>
+                                    <div class="td-pb-span4">
+                                    </div>
+                                </div>
 
-    <!--
+                                <div class="td-pb-row">
+                                    <div class="td-pb-span12"><aside class="footer-social-wrap"></aside></div><div class="td-pb-span12"><aside class="footer-logo-wrap"><a href="http://www.kouytheavy.com/"><img src="" alt="" title="" /></a></aside></div><div class="td-pb-span12"><aside class="footer-text-wrap"><div class="footer-email-wrap">Contact us: <a href="mailto:Kouytheavy@gmail.com">Kouytheavy@gmail.com</a></div></aside></div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- Sub Footer -->
+                        <div class="td-sub-footer-container">
+                            <div class="td-container">
+                                <div class="td-pb-row">
+                                    <div class="td-pb-span12 td-sub-footer-menu">
+                                    </div>
 
-        Theme: ionMag by tagDiv.com 2017
-        Version: 2.1 (rara)
-        Deploy mode: deploy
-        
-        uid: 5a841e3d668fe
-    -->
+                                    <div class="td-pb-span12 td-sub-footer-copy">
 
-    <link rel='stylesheet' id='dashicons-css'  href='http://www.kouytheavy.com/wp-includes/css/dashicons.min.css?ver=4.9.4' type='text/css' media='all' />
-<link rel='stylesheet' id='thickbox-css'  href='http://www.kouytheavy.com/wp-includes/js/thickbox/thickbox.css?ver=4.9.4' type='text/css' media='all' />
-<script type='text/javascript'>
-/* <![CDATA[ */
-var wpcf7 = {"apiSettings":{"root":"http:\/\/www.kouytheavy.com\/index.php?rest_route=\/contact-form-7\/v1","namespace":"contact-form-7\/v1"},"recaptcha":{"messages":{"empty":"Please verify that you are not a robot."}}};
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div><!--close td-outer-wrap-->
+
+                <div id="fb-root"></div>
+                <script>
+(function (d, s, id) {
+                        var js, fjs = d.getElementsByTagName(s)[0];
+                        if (d.getElementById(id)) return;
+                        js = d.createElement(s); js.id = id;
+                        js.src = "//connect.facebook.net/en_US/sdk.js#xfbml=1&appId=&version=v2.3";
+                        fjs.parentNode.insertBefore(js, fjs);
+                    }(document, 'script', 'facebook-jssdk'));</script>
+                <!-- YouTube Channel 3 -->
+                <script type="text/javascript">function ytc_init_MPAU() { jQuery('.ytc-lightbox').magnificPopupAU({ disableOn: 320, type: 'iframe', mainClass: 'ytc-mfp-lightbox', removalDelay: 160, preloader: false, fixedContentPos: false }); } jQuery(window).on('load', function () { ytc_init_MPAU(); }); jQuery(document).ajaxComplete(function () { ytc_init_MPAU(); });</script>
+
+                <!--
+
+                    Theme: ionMag by tagDiv.com 2017
+                    Version: 2.1 (rara)
+                    Deploy mode: deploy
+
+                    uid: 5a841e3d668fe
+                -->
+
+                <link rel='stylesheet' id='dashicons-css' href='http://www.kouytheavy.com/wp-includes/css/dashicons.min.css?ver=4.9.4' type='text/css' media='all' />
+                <link rel='stylesheet' id='thickbox-css' href='http://www.kouytheavy.com/wp-includes/js/thickbox/thickbox.css?ver=4.9.4' type='text/css' media='all' />
+                <script type='text/javascript'>
+                    /* <![CDATA[ */
+                    var wpcf7 = { "apiSettings": { "root": "http:\/\/www.kouytheavy.com\/index.php?rest_route=\/contact-form-7\/v1", "namespace": "contact-form-7\/v1" }, "recaptcha": { "messages": { "empty": "Please verify that you are not a robot." } } };
 /* ]]> */
-</script>
-<script type='text/javascript' src='http://www.kouytheavy.com/wp-content/plugins/contact-form-7/includes/js/scripts.js?ver=5.0'></script>
-<script type='text/javascript' src='http://www.kouytheavy.com/wp-content/plugins/youtube-channel/assets/lib/magnific-popup/jquery.magnific-popup.min.js?ver=3.0.11.3'></script>
-<!--<script type='text/javascript' src='http://www.kouytheavy.com/wp-content/themes/ionMag/js/tagdiv_theme.min.js?ver=2.1'></script>-->
-<script type='text/javascript' src='http://www.kouytheavy.com/wp-includes/js/comment-reply.min.js?ver=4.9.4'></script>
-<script type='text/javascript' src='http://www.kouytheavy.com/wp-includes/js/wp-embed.min.js?ver=4.9.4'></script>
-<script type='text/javascript'>
-/* <![CDATA[ */
-var thickboxL10n = {"next":"Next >","prev":"< Prev","image":"Image","of":"of","close":"Close","noiframes":"This feature requires inline frames. You have iframes disabled or your browser does not support them.","loadingAnimation":"http:\/\/www.kouytheavy.com\/wp-includes\/js\/thickbox\/loadingAnimation.gif"};
+                </script>
+                <script type='text/javascript' src='http://www.kouytheavy.com/wp-content/plugins/contact-form-7/includes/js/scripts.js?ver=5.0'></script>
+                <script type='text/javascript' src='http://www.kouytheavy.com/wp-content/plugins/youtube-channel/assets/lib/magnific-popup/jquery.magnific-popup.min.js?ver=3.0.11.3'></script>
+                <!--<script type='text/javascript' src='http://www.kouytheavy.com/wp-content/themes/ionMag/js/tagdiv_theme.min.js?ver=2.1'></script>-->
+                <script type='text/javascript' src='http://www.kouytheavy.com/wp-includes/js/comment-reply.min.js?ver=4.9.4'></script>
+                <script type='text/javascript' src='http://www.kouytheavy.com/wp-includes/js/wp-embed.min.js?ver=4.9.4'></script>
+                <script type='text/javascript'>
+                    /* <![CDATA[ */
+                    var thickboxL10n = { "next": "Next >", "prev": "< Prev", "image": "Image", "of": "of", "close": "Close", "noiframes": "This feature requires inline frames. You have iframes disabled or your browser does not support them.", "loadingAnimation": "http:\/\/www.kouytheavy.com\/wp-includes\/js\/thickbox\/loadingAnimation.gif" };
 /* ]]> */
-</script>
-<script type='text/javascript' src='http://www.kouytheavy.com/wp-includes/js/thickbox/thickbox.js?ver=3.1-20121105'></script>
+                </script>
+                <script type='text/javascript' src='http://www.kouytheavy.com/wp-includes/js/thickbox/thickbox.js?ver=3.1-20121105'></script>
 
-<!-- JS generated by theme -->
+                <!-- JS generated by theme -->
 
-<script>
-    
+                <script>
 
 
-            
 
-	            // if the theme has tdBackstr support, it means this already uses it
-                if ( 'undefined' !== typeof window.tdBackstr ) {
 
-                    (function(){
-                        // the site background td-backstretch jquery object is dynamically added in DOM, and after any translation effects are applied over td-backstretch
-                        var wrapper_image_jquery_obj = jQuery( '<div class=\'backstretch\'></div>' );
-                        var image_jquery_obj = jQuery( '<img class=\'td-backstretch not-parallax\' src=\'https://monetizepros.com/wp-content/uploads/2015/09/Dollarphotoclub_90474714.jpg\'>' );
 
-                        wrapper_image_jquery_obj.append( image_jquery_obj );
+                    // if the theme has tdBackstr support, it means this already uses it
+                    if ('undefined' !== typeof window.tdBackstr) {
 
-                        jQuery( 'body' ).prepend( wrapper_image_jquery_obj );
+                        (function () {
+                            // the site background td-backstretch jquery object is dynamically added in DOM, and after any translation effects are applied over td-backstretch
+                            var wrapper_image_jquery_obj = jQuery('<div class=\'backstretch\'></div>');
+                            var image_jquery_obj = jQuery('<img class=\'td-backstretch not-parallax\' src=\'https://monetizepros.com/wp-content/uploads/2015/09/Dollarphotoclub_90474714.jpg\'>');
 
-                        var td_backstr_item = new tdBackstr.item();
+                            wrapper_image_jquery_obj.append(image_jquery_obj);
 
-                        td_backstr_item.wrapper_image_jquery_obj = wrapper_image_jquery_obj;
-                        td_backstr_item.image_jquery_obj = image_jquery_obj;
+                            jQuery('body').prepend(wrapper_image_jquery_obj);
 
-	                    tdBackstr.add_item( td_backstr_item );
+                            var td_backstr_item = new tdBackstr.item();
 
-                    })();
-                }
+                            td_backstr_item.wrapper_image_jquery_obj = wrapper_image_jquery_obj;
+                            td_backstr_item.image_jquery_obj = image_jquery_obj;
 
-            
-            
+                            tdBackstr.add_item(td_backstr_item);
 
-	
+                        })();
+                    }
+
+
+
+
+
 
 		//(function(){
 		//	var html_jquery_obj = jQuery('html');
@@ -1337,184 +1502,184 @@ var thickboxL10n = {"next":"Next >","prev":"< Prev","image":"Image","of":"of","c
 		//	}
 		//})();
 
-	
-	
-</script>
+
+
+                </script>
 
 
 
-			<div id="tdw-css-writer" style="display: none" class="tdw-drag-dialog tdc-window-sidebar">
-				<header>
-
-				
-					<a title="Editor" class="tdw-tab tdc-tab-active" href="#" data-tab-content="tdw-tab-editor">Edit with Live CSS</a>
-					<div class="tdw-less-info" title="This will be red when errors are detected in your CSS and LESS"></div>
-				
-				</header>
-				<div class="tdw-content">
-
-					
-					<div class="tdw-tabs-content tdw-tab-editor tdc-tab-content-active">
+                <div id="tdw-css-writer" style="display: none" class="tdw-drag-dialog tdc-window-sidebar">
+                    <header>
 
 
-						<script>
+                        <a title="Editor" class="tdw-tab tdc-tab-active" href="#" data-tab-content="tdw-tab-editor">Edit with Live CSS</a>
+                        <div class="tdw-less-info" title="This will be red when errors are detected in your CSS and LESS"></div>
 
-							(function(jQuery, undefined) {
-
-								jQuery(window).ready(function() {
-
-									if ( 'undefined' !== typeof tdcAdminIFrameUI ) {
-										var $liveIframe  = tdcAdminIFrameUI.getLiveIframe();
-
-										if ( $liveIframe.length ) {
-											$liveIframe.load(function() {
-												$liveIframe.contents().find( 'body').append( '<textarea class="tdw-css-writer-editor" style="display: none"></textarea>' );
-											});
-										}
-									}
-
-								});
-
-							})(jQuery);
-
-						</script>
+                    </header>
+                    <div class="tdw-content">
 
 
-						<textarea class="tdw-css-writer-editor td_live_css_uid_1_5a841e3d66e7f"></textarea>
-						<div id="td_live_css_uid_1_5a841e3d66e7f" class="td-code-editor"></div>
+                        <div class="tdw-tabs-content tdw-tab-editor tdc-tab-content-active">
 
 
-						<script>
-							jQuery(window).load(function (){
+                            <script>
 
-								if ( 'undefined' !== typeof tdLiveCssInject ) {
+                                (function (jQuery, undefined) {
 
-									tdLiveCssInject.init();
+                                    jQuery(window).ready(function () {
+
+                                        if ('undefined' !== typeof tdcAdminIFrameUI) {
+                                            var $liveIframe = tdcAdminIFrameUI.getLiveIframe();
+
+                                            if ($liveIframe.length) {
+                                                $liveIframe.load(function () {
+                                                    $liveIframe.contents().find('body').append('<textarea class="tdw-css-writer-editor" style="display: none"></textarea>');
+                                                });
+                                            }
+                                        }
+
+                                    });
+
+                                })(jQuery);
+
+                            </script>
 
 
-									var editor_textarea = jQuery('.td_live_css_uid_1_5a841e3d66e7f');
-									var languageTools = ace.require("ace/ext/language_tools");
-									var tdcCompleter = {
-										getCompletions: function (editor, session, pos, prefix, callback) {
-											if (prefix.length === 0) {
-												callback(null, []);
-												return
-											}
+                            <textarea class="tdw-css-writer-editor td_live_css_uid_1_5a841e3d66e7f"></textarea>
+                            <div id="td_live_css_uid_1_5a841e3d66e7f" class="td-code-editor"></div>
 
-											if ('undefined' !== typeof tdcAdminIFrameUI) {
 
-												var data = {
-													error: undefined,
-													getShortcode: ''
-												};
+                            <script>
+                                jQuery(window).load(function () {
 
-												tdcIFrameData.getShortcodeFromData(data);
+                                    if ('undefined' !== typeof tdLiveCssInject) {
 
-												if (!_.isUndefined(data.error)) {
-													tdcDebug.log(data.error);
-												}
+                                        tdLiveCssInject.init();
 
-												if (!_.isUndefined(data.getShortcode)) {
 
-													var regex = /el_class=\"([A-Za-z0-9_-]*\s*)+\"/g,
-														results = data.getShortcode.match(regex);
+                                        var editor_textarea = jQuery('.td_live_css_uid_1_5a841e3d66e7f');
+                                        var languageTools = ace.require("ace/ext/language_tools");
+                                        var tdcCompleter = {
+                                            getCompletions: function (editor, session, pos, prefix, callback) {
+                                                if (prefix.length === 0) {
+                                                    callback(null, []);
+                                                    return
+                                                }
 
-													var elClasses = {};
+                                                if ('undefined' !== typeof tdcAdminIFrameUI) {
 
-													for (var i = 0; i < results.length; i++) {
-														var currentClasses = results[i]
-															.replace('el_class="', '')
-															.replace('"', '')
-															.split(' ');
+                                                    var data = {
+                                                        error: undefined,
+                                                        getShortcode: ''
+                                                    };
 
-														for (var j = 0; j < currentClasses.length; j++) {
-															if (_.isUndefined(elClasses[currentClasses[j]])) {
-																elClasses[currentClasses[j]] = '';
-															}
-														}
-													}
+                                                    tdcIFrameData.getShortcodeFromData(data);
 
-													var arrElClasses = [];
+                                                    if (!_.isUndefined(data.error)) {
+                                                        tdcDebug.log(data.error);
+                                                    }
 
-													for (var prop in elClasses) {
-														arrElClasses.push(prop);
-													}
+                                                    if (!_.isUndefined(data.getShortcode)) {
 
-													callback(null, arrElClasses.map(function (item) {
-														return {
-															name: item,
-															value: item,
-															meta: 'in_page'
-														}
-													}));
-												}
-											}
-										}
-									};
-									languageTools.addCompleter(tdcCompleter);
+                                                        var regex = /el_class=\"([A-Za-z0-9_-]*\s*)+\"/g,
+                                                            results = data.getShortcode.match(regex);
 
-									window.editor = ace.edit("td_live_css_uid_1_5a841e3d66e7f");
+                                                        var elClasses = {};
 
-									// 'change' handler is written as function because it's called by tdc_on_add_css_live_components (of wp_footer hook)
-									// We did it to reattach the existing compiled css to the new content received from server.
-									window.editorChangeHandler = function () {
-										//tdwState.lessWasEdited = true;
+                                                        for (var i = 0; i < results.length; i++) {
+                                                            var currentClasses = results[i]
+                                                                .replace('el_class="', '')
+                                                                .replace('"', '')
+                                                                .split(' ');
 
-										window.onbeforeunload = function () {
-											if (tdwState.lessWasEdited) {
-												return "You have attempted to leave this page. Are you sure?";
-											}
-											return false;
-										};
+                                                            for (var j = 0; j < currentClasses.length; j++) {
+                                                                if (_.isUndefined(elClasses[currentClasses[j]])) {
+                                                                    elClasses[currentClasses[j]] = '';
+                                                                }
+                                                            }
+                                                        }
 
-										var editorValue = editor.getSession().getValue();
+                                                        var arrElClasses = [];
 
-										editor_textarea.val(editorValue);
+                                                        for (var prop in elClasses) {
+                                                            arrElClasses.push(prop);
+                                                        }
 
-										if ('undefined' !== typeof tdcAdminIFrameUI) {
-											tdcAdminIFrameUI.getLiveIframe().contents().find('.tdw-css-writer-editor:first').val(editorValue);
+                                                        callback(null, arrElClasses.map(function (item) {
+                                                            return {
+                                                                name: item,
+                                                                value: item,
+                                                                meta: 'in_page'
+                                                            }
+                                                        }));
+                                                    }
+                                                }
+                                            }
+                                        };
+                                        languageTools.addCompleter(tdcCompleter);
 
-											// Mark the content as modified
-											// This is important for showing info when composer closes
-                                            tdcMain.setContentModified();
-										}
+                                        window.editor = ace.edit("td_live_css_uid_1_5a841e3d66e7f");
 
-										tdLiveCssInject.less();
-									};
+                                        // 'change' handler is written as function because it's called by tdc_on_add_css_live_components (of wp_footer hook)
+                                        // We did it to reattach the existing compiled css to the new content received from server.
+                                        window.editorChangeHandler = function () {
+                                            //tdwState.lessWasEdited = true;
 
-									editor.getSession().setValue(editor_textarea.val());
-									editor.getSession().on('change', editorChangeHandler);
+                                            window.onbeforeunload = function () {
+                                                if (tdwState.lessWasEdited) {
+                                                    return "You have attempted to leave this page. Are you sure?";
+                                                }
+                                                return false;
+                                            };
 
-									editor.setTheme("ace/theme/textmate");
-									editor.setShowPrintMargin(false);
-									editor.getSession().setMode("ace/mode/less");
-									editor.setOptions({
-										enableBasicAutocompletion: true,
-										enableSnippets: true,
-										enableLiveAutocompletion: false
-									});
+                                            var editorValue = editor.getSession().getValue();
 
-								}
+                                            editor_textarea.val(editorValue);
 
-							});
-						</script>
+                                            if ('undefined' !== typeof tdcAdminIFrameUI) {
+                                                tdcAdminIFrameUI.getLiveIframe().contents().find('.tdw-css-writer-editor:first').val(editorValue);
 
-					</div>
-				</div>
+                                                // Mark the content as modified
+                                                // This is important for showing info when composer closes
+                                                tdcMain.setContentModified();
+                                            }
 
-				<footer>
+                                            tdLiveCssInject.less();
+                                        };
 
-					
-						<a href="#" class="tdw-save-css">Save</a>
-						<div class="tdw-more-info-text">Write CSS OR LESS and hit save. CTRL + SPACE for auto-complete.</div>
+                                        editor.getSession().setValue(editor_textarea.val());
+                                        editor.getSession().on('change', editorChangeHandler);
 
-					
-					<div class="tdw-resize"></div>
-				</footer>
-            </div>
-            
+                                        editor.setTheme("ace/theme/textmate");
+                                        editor.setShowPrintMargin(false);
+                                        editor.getSession().setMode("ace/mode/less");
+                                        editor.setOptions({
+                                            enableBasicAutocompletion: true,
+                                            enableSnippets: true,
+                                            enableLiveAutocompletion: false
+                                        });
 
-        
-			
+                                    }
+
+                                });
+                            </script>
+
+                        </div>
+                    </div>
+
+                    <footer>
+
+
+                        <a href="#" class="tdw-save-css">Save</a>
+                        <div class="tdw-more-info-text">Write CSS OR LESS and hit save. CTRL + SPACE for auto-complete.</div>
+
+
+                        <div class="tdw-resize"></div>
+                    </footer>
+                </div>
+
+
+
+
 </body>
 </html>

@@ -2,8 +2,10 @@
   "ExpandedNodes": [
     "",
     "\\libs",
-    "\\libs\\social-libs"
+    "\\libs\\carousel-lib",
+    "\\libs\\social-libs",
+    "\\libs\\ui-carousel"
   ],
-  "SelectedNode": "\\common.css",
+  "SelectedNode": "\\script.js",
   "PreviewInSolutionExplorer": false
 }

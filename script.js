@@ -48,6 +48,13 @@
             return Math.round(difference_ms / ONE_DAY)
 
         }
+        vm.loadign = false;
+        vm.onCarouselBeforeChange = function () {
+            vm.loadign = true;
+        };
+        vm.onCarouselAfterChange = function () {
+            vm.loadign = false;
+        }
       
     }
 app.run(['Carousel', (Carousel) => {
