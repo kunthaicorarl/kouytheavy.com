@@ -11,6 +11,15 @@
     /** @ngInject */
     function MainController($log) {
         var vm = this;
+        vm.dataIndex = 0;
+        var options = {
+            'player_container': '#player',
+            'player_ratio': '16:9',
+            'player_mobile_on_width': '300',
+            'player_desktop_video_width': '70%',
+            'automatic_response': false,
+            player_list:[]
+        }
         vm.slides = {
             options: {
                 'slidesToShow':5,
@@ -23,6 +32,7 @@
         };
         for (var i = 0; i < 6; i++)
             vm.slides.item.push({
+                id:i,
                 url: 'http://placehold.it/700x400',
                 price: 24.99,
                 title: 'Item Two',
@@ -60,7 +70,7 @@
 app.run(['Carousel', (Carousel) => {
     Carousel.setOptions({
         arrows: true,
-        autoplay: false,
+        autoplay: true,
         autoplaySpeed: 3000,
         cssEase: 'ease',
         dots: false,

@@ -46,7 +46,7 @@
                                             html_ += '<div class="sd_server"></div>';
                                             html_ += '</div>';
                                             html_ += '<div class="sd_videos">';
-                                            html_ += '<ul class="sd_list"></ul>';
+                                            html_ += '<ul class="sd_list" style="float: right;width: 43%;"></ul>';
                                             html_ += '<div class="sd_control">';
                                             html_ += '<span class="sd_prevPage sd_btn"><i class="fa fa-chevron-left"></i><i class="fa fa-chevron-left"></i><span></span></span>';
                                             html_ += '<span class="sd_prev sd_btn"><i class="fa fa-chevron-left"></i><span></span></span>';
@@ -265,7 +265,8 @@ function size() {
         player.removeClass('sd_desktop');
         player.find('.sd_list').height(list_item * (item_height));
         player.find('.sd_video').height(player.find('.sd_video').width() * ratio);
-        player.find('.sd_video').width('100%');
+        player.find('.sd_video').width('57%');
+        player.find('.sd_video').css({ "float":"left"});
         player.find('.sd_videos').width('100%');
     } else {
         list_item = list_item_desktop;
@@ -273,7 +274,8 @@ function size() {
         player.width(width_);
         player.find('.sd_list').height(list_item * (item_height - 0.8));
         player.find('.sd_video').height(player.find('.sd_videos').outerHeight());
-        player.find('.sd_video').css('width', opt.player_desktop_video_width);
+        player.find('.sd_video').width('57%');
+        player.find('.sd_video').css({ "float": "left" });
         player.find('.sd_videos').css('width', 100 - parseInt(opt.player_desktop_video_width) + '%');
     }
 }
@@ -375,6 +377,4 @@ var timer = setInterval(function () {
         clearInterval(timer);
     }
 }, 50);
-
-
-                                   
+     
