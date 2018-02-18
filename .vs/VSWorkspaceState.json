@@ -2,8 +2,9 @@
   "ExpandedNodes": [
     "",
     "\\libs",
-    "\\libs\\social-libs"
+    "\\libs\\player-js",
+    "\\libs\\ui-carousel"
   ],
-  "SelectedNode": "\\common.css",
+  "SelectedNode": "\\libs\\player-js\\player.js",
   "PreviewInSolutionExplorer": false
 }
